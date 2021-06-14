@@ -1,0 +1,133 @@
+Dicionário do javascript:
+
+Array:
+    x.length = para saber a quantidade de itens do array.
+    x[y], sendo y o array que você quer, COMEÇA COM 0.
+
+Date:
+    x = new Date() Dá para pegar a data formatada;
+    x.getDate = pega a data de hoje
+    x.getFullYear = pega o ano com 4 dígitos
+    x.getMonth e month começa em 0 = Pega o mês
+    x.toLocaleDateString("x") = pega a data do formato local
+
+Funções para conversão de variáveis:
+
+    parseInt() = passar para inteiro 
+    parseFloat() = passar para float
+    toString() = passar para string
+
+Template string.
+    console.log('${cliente} seu produto: ${produto} ficou pronto');
+
+Foreach:
+    x.forEach(function(value, index){
+
+        console.log(x);
+    
+    })
+
+
+---------------------------Exemplos----------------------------
+
+Exemplos Nova e antigas classes:
+    Exemplo antiga classes js:
+
+    let ExemploClass = function(){
+
+    this.name;
+    this.code;
+
+    var ExibirCadastro = function(name, code){
+        return console.log('Cliente : ${name} Cadastro: ${code}');
+    }
+    }
+
+    let Osvaldo = new ExemploClass();
+
+    console.log(Osvaldo.name, Osvaldo.code);
+    console.log(ExibirCadastro(Osvaldo.name, Osvaldo.code));
+
+    Exemplo nova classe js:
+
+    class ExemploClass{
+
+        constructor{
+
+            this.name;
+            this.code;
+
+        }
+
+        exibirCliente(name, code){
+            return console.log('Cliente : ${name} Cadastro: ${code}');
+        }
+    }
+
+    let Osvaldo = new ExemploClass();
+
+    console.log(Osvaldo.name, Osvaldo.code);
+    console.log(ExibirCadastro(Osvaldo.name, Osvaldo.code));
+
+Exemplo function:
+    function somar(){
+
+    return se tiver que retornar
+    }
+
+Exemplo switch:
+    switch(cor){
+        case "verde":
+        console.log("siga");
+        break;
+
+        case "amarelo":
+        console.log("atenção");
+        break;
+
+        case "vermelho":
+        console.log("pare");
+        break;
+
+        default:
+        console.log("sei lá");
+    }
+
+Exemplo eval():
+    function calc(x1, x2, operador){
+
+        return eval('${x1} ${operador} ${x2}');
+    }
+
+    let result = calc(1, 2, "+");
+    console.log(result);
+
+Exemplo anonymous function:
+    (function calc(x1, x2, operador){
+
+        return eval('${x1} ${operador} ${x2}');
+    })(let result = 1, 2, "+")
+
+    console.log(result);
+
+Exemplo arrow function:
+    let calc = (x1, x2, operador) => {
+
+        return eval('${x1} ${operador} ${x2}');
+    }
+
+    console.log(calc));
+
+Exemplo window class:
+    window.addEventListener('focus' event =>{
+
+        console.log(focus);
+
+    });
+
+Exemplo document class:
+    document.addEventListener('click' event =>{
+
+        console.log(click);
+
+    });
