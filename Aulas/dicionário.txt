@@ -1,8 +1,8 @@
 Dicionário do javascript:
 
-Array:
-    x.length = para saber a quantidade de itens do array.
-    x[y], sendo y o array que você quer, COMEÇA COM 0.
+Arrays:
+    x.length = para saber a quantidade de itens do array, x[y], sendo y o array que você quer, COMEÇA COM 0 e pode usar expressões numéricas.
+    x.push() = adiciona algo a um array
 
 Date:
     x = new Date() Dá para pegar a data formatada;
@@ -11,14 +11,25 @@ Date:
     x.getMonth e month começa em 0 = Pega o mês
     x.toLocaleDateString("x") = pega a data do formato local
 
-Funções para conversão de variáveis:
+Eventos:
+    Para usar um evento no js é so usar o addEventListener(x), sendo x o evento que você quer escutar:
+    Eventos de mouse:
+        click = quando clicar;
+        dbclick = quando acontece dois clicks.
+        contextmenu = quando clica com o botão direito;
+        drag = quando puxar;
+        mouseover = quando o mouse em cima do botão;
+        mouseout = quando o mouse sai do botão;
+        mouseup = quando o mouse tá po cima de um elemento;
+        mousedown = quando o mouse tá por baixo de um elemento.
 
-    parseInt() = passar para inteiro 
-    parseFloat() = passar para float
-    toString() = passar para string
-
-Template string.
-    console.log('${cliente} seu produto: ${produto} ficou pronto');
+    Dá para colocar vários eventos também, mas aí vc tem que criar um método:
+    Ex:
+        addEventListenerAll(element, events, fn){
+            events.split(' ').forEach(event => {
+                element.addEventListener(event, fn, false);
+            });
+        }
 
 Foreach:
     x.forEach(function(value, index){
@@ -26,6 +37,33 @@ Foreach:
         console.log(x);
     
     })
+
+Funções para conversão de variáveis:
+    parseInt() = passar para inteiro;
+    parseFloat() = passar para float;
+    toString() = passar para string;
+
+Funções para String:
+    split('x') = com essa função, dá pára criar um array com os itens de uma string de definindo x, sendo x o caractere que você você 
+    quer usar para separar, como um espaço entre 1 2 3 4 5, usando um split(' ') eu criaria um item de array para cada número;
+
+Template string do js (A STRING MONSTRA).
+    
+       Você usa em uma variável ou em qualquer coisa que possa receber uma variável concatenada como texto a template string, fica muito mais
+    fácil concatenar as coisas, você pode escrever coisas com a template string, escreva o seu texto normal com todos os caracteres e os 
+    espaços e quando quiser usar uma variável, utilize ${x} sendo x a variável, a template string deve estar em aspas simples '' para 
+    funcionar, lembra disso.
+       Olha o exemplo de template string.
+
+querySelector()
+    Ele seleciona algo no documento html recebendo um x, sendo x o id do que você quer selecionar.
+    querySelectorAll() O querySelector() normal, so seleciona um x,se você quer que ele selecione vários, use o querySelectorAll(x,y,z...)
+    separando os itens por vírgula.
+
+window:
+    window.isNaN(x) =  essa função valida se algo é um número ou não, retornando um boolean de true ou false e ele valida se é um número ou não 
+    mesmo se for uma string, validando false se for um número e true se não for.
+
 
 
 ---------------------------Exemplos----------------------------
@@ -69,6 +107,38 @@ Exemplos Nova e antigas classes:
     console.log(Osvaldo.name, Osvaldo.code);
     console.log(ExibirCadastro(Osvaldo.name, Osvaldo.code));
 
+Exemplo anonymous function:
+    (function calc(x1, x2, operador){
+
+        return eval('${x1} ${operador} ${x2}');
+    })(let result = 1, 2, "+")
+
+    console.log(result);
+
+Exemplo arrow function:
+    let calc = (x1, x2, operador) => {
+
+        return eval('${x1} ${operador} ${x2}');
+    }
+
+    console.log(calc));
+
+Exemplo document class:
+    document.addEventListener('click' event =>{
+
+        console.log(click);
+
+    });
+
+Exemplo eval():
+    function calc(x1, x2, operador){
+
+        return eval('${x1} ${operador} ${x2}');
+    }
+
+    let result = calc(1, 2, "+");
+    console.log(result);
+
 Exemplo function:
     function somar(){
 
@@ -93,30 +163,8 @@ Exemplo switch:
         console.log("sei lá");
     }
 
-Exemplo eval():
-    function calc(x1, x2, operador){
-
-        return eval('${x1} ${operador} ${x2}');
-    }
-
-    let result = calc(1, 2, "+");
-    console.log(result);
-
-Exemplo anonymous function:
-    (function calc(x1, x2, operador){
-
-        return eval('${x1} ${operador} ${x2}');
-    })(let result = 1, 2, "+")
-
-    console.log(result);
-
-Exemplo arrow function:
-    let calc = (x1, x2, operador) => {
-
-        return eval('${x1} ${operador} ${x2}');
-    }
-
-    console.log(calc));
+Exemplo template string do js (A STRING MONSTRA).
+    console.log('${cliente} seu produto: ${produto} ficou pronto');
 
 Exemplo window class:
     window.addEventListener('focus' event =>{
@@ -125,9 +173,3 @@ Exemplo window class:
 
     });
 
-Exemplo document class:
-    document.addEventListener('click' event =>{
-
-        console.log(click);
-
-    });

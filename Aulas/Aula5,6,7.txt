@@ -105,3 +105,9 @@ EX:
 
 log
     Criei um método para suportar vários events.
+    
+    addEventListenerAll(element, events, fn){
+        events.split(' ').forEach(event => {
+            element.addEventListener(event, fn, false);
+        });
+    }
