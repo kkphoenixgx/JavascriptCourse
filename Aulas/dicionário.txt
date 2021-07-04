@@ -73,12 +73,12 @@ Exemplos Nova e antigas classes:
 
     let ExemploClass = function(){
 
-    this.name;
-    this.code;
+        this.name;
+        this.code;
 
-    var ExibirCadastro = function(name, code){
-        return console.log('Cliente : ${name} Cadastro: ${code}');
-    }
+        var ExibirCadastro = function(name, code){
+            return console.log('Cliente : ${name} Cadastro: ${code}');
+        }
     }
 
     let Osvaldo = new ExemploClass();
