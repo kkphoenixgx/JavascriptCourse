@@ -69,6 +69,7 @@ window:
 ---------------------------Exemplos----------------------------
 
 Exemplos Nova e antigas classes:
+
     Exemplo antiga classes js:
 
     let ExemploClass = function(){
