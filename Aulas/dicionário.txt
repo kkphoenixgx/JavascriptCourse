@@ -23,8 +23,8 @@ Eventos:
         mouseup = quando o mouse tá po cima de um elemento;
         mousedown = quando o mouse tá por baixo de um elemento.
 
-    Dá para colocar vários eventos também, mas aí vc tem que criar um método:
-    Ex:
+    preventDefault(): Que basicamente fala para parar tudo o que esse cara disparou, pode ser usado no event como parametro
+    Metodo para vários eventos:
         addEventListenerAll(element, events, fn){
             events.split(' ').forEach(event => {
                 element.addEventListener(event, fn, false);
