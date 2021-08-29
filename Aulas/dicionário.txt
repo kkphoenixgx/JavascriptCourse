@@ -87,14 +87,17 @@ Exemplos Nova e antigas classes:
     console.log(Osvaldo.name, Osvaldo.code);
     console.log(ExibirCadastro(Osvaldo.name, Osvaldo.code));
 
-    Exemplo nova classe js:
+    * Exemplo nova classe js:
 
     class ExemploClass{
 
-        constructor{
+        this.code;
+        this.name
 
-            this.name;
-            this.code;
+        constructor(name, code){
+
+            this.name = name;
+            this.code = code;
 
         }
 
