@@ -2,7 +2,7 @@ mod 38                                              29/08/21
 
 -Programação Orientada a Objetos 
 
-MVC = Separar a lógica, do vizual, dos negócios
+MVC = Separar a lógica, do visual, dos negócios
 
 Uma correção muitos bom de pontuar é que quando você cria
 uma tag como uma variável, tem que apagar do conteúdo
