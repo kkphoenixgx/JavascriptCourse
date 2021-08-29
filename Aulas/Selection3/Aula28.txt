@@ -20,7 +20,7 @@ document.createElement("tr");
                       </td>`
 
 Nessa aula eles explicaram o funcionamento de uma classe
-se tiver dúvida alguyma ainda, checa o dicionário e 
+se tiver dúvida alguma ainda, checa o dicionário e 
 verifica a estrutura de classes e o construtor
 
 lembrando que para instanciar é só criar uma variável
