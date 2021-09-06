@@ -10,6 +10,7 @@ Date:
     x.getFullYear = pega o ano com 4 dígitos
     x.getMonth e month começa em 0 = Pega o mês
     x.toLocaleDateString("x") = pega a data do formato local
+    x.getTime() = retorna em o timeStamp em  milissegundos.
 
 Eventos:
     Para usar um evento no js é so usar o addEventListener(x), sendo x o evento que você quer escutar:
