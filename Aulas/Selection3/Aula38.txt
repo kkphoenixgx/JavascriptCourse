@@ -1,0 +1,21 @@
+mod 50                                              10/09/21
+
+- Trabalhando com Edição de Dados
+
+* For in :
+   for(let x in y){
+
+   }
+
+O que isso faz? Bem simples, para cada x em y, sendo y um 
+objeto faça alguma coisa. Esse ForIn é bem útil para 
+procurar algo em um objeto.
+
+* continue
+   O continue é muito interessante, principalmente quando só
+uma coisa tá atrapalhando um código todo, o continue 
+funciona como o próprio nome diz, continua aí e ignora,
+ele é usando geralmente junto com um if, dizemos que o 
+problema é uma variável(x) que você não vai precisar dela
+em um array por que ela não tem valor if(x) continue;
+
