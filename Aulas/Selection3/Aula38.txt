@@ -19,3 +19,10 @@ ele é usando geralmente junto com um if, dizemos que o
 problema é uma variável(x) que você não vai precisar dela
 em um array por que ela não tem valor if(x) continue;
 
+* x.rowIndex 
+  Esse método trás o número da linha começando do 1, isso 
+  serve para armazenar essa informação para usos posteriores
+
+* x.sectionRowIndex
+  Esse método faz a mesma coisa que o rowIndex, porém começa
+  do 0
