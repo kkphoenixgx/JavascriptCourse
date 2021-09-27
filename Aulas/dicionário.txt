@@ -1,18 +1,21 @@
+//@collapse
+
 Dicionário do javascript:
 
-Arrays:
+Arrays:{
     x.length = para saber a quantidade de itens do array, x[y], sendo y o array que você quer, COMEÇA COM 0 e pode usar expressões numéricas.
     x.push() = adiciona algo a um array
+}
 
-Date:
+Date:{
     x = new Date() Dá para pegar a data formatada;
     x.getDate = pega a data de hoje
     x.getFullYear = pega o ano com 4 dígitos
     x.getMonth e month começa em 0 = Pega o mês
     x.toLocaleDateString("x") = pega a data do formato local
     x.getTime() = retorna em o timeStamp em  milissegundos.
-
-Eventos:
+}
+Eventos:{
     Para usar um evento no js é so usar o addEventListener(x), sendo x o evento que você quer escutar:
     Eventos de mouse:
         click = quando clicar;
@@ -31,45 +34,133 @@ Eventos:
                 element.addEventListener(event, fn, false);
             });
         }
+}
 
-Foreach:
+Foreach:{
     x.forEach(function(value, index){
 
         console.log(x);
     
     })
+}
 
-Funções para conversão de variáveis:
+Funções para conversão de variáveis:{
     parseInt() = passar para inteiro;
     parseFloat() = passar para float;
     toString() = passar para string;
+}
 
-Funções para String:
+Funções para String:{
     split('x') = com essa função, dá pára criar um array com os itens de uma string de definindo x, sendo x o caractere que você você 
     quer usar para separar, como um espaço entre 1 2 3 4 5, usando um split(' ') eu criaria um item de array para cada número;
+}
 
-Template string do js (A STRING MONSTRA).
+Template string do js (A STRING MONSTRA).{
     
        Você usa em uma variável ou em qualquer coisa que possa receber uma variável concatenada como texto a template string, fica muito mais
     fácil concatenar as coisas, você pode escrever coisas com a template string, escreva o seu texto normal com todos os caracteres e os 
     espaços e quando quiser usar uma variável, utilize ${x} sendo x a variável, a template string deve estar em aspas simples '' para 
     funcionar, lembra disso.
        Olha o exemplo de template string.
+}
 
-querySelector()
+querySelector(){
     Ele seleciona algo no documento html recebendo um x, sendo x o id do que você quer selecionar.
     querySelectorAll() O querySelector() normal, so seleciona um x,se você quer que ele selecione vários, use o querySelectorAll(x,y,z...)
     separando os itens por vírgula.
+}
 
-window:
+window:{
     window.isNaN(x) =  essa função valida se algo é um número ou não, retornando um boolean de true ou false e ele valida se é um número ou não 
     mesmo se for uma string, validando false se for um número e true se não for.
+}
+
+JSON{
+
+      Json nada mais é do que um objeto que pode ser lido de diversas linguagens em várias formas e é um objeto que pode ser moldado muito
+    facilmente, ele é ótimo para ser usado em banco de dados e transferência de informação.
+
+      Usando o tipo de variável JSON podemos criar um objeto simplesmente fazendo x = {}, isso na realidade é um objeto, um json, porque a 
+    forma de escrita dele é diferente de uma classe, ele é simplesmente um objeto existente.
+    
+    ex:{
+        user = {
+            nome,
+            idade,
+            sexo,
+            email,
+        }
+    }
+
+    * Para criar um json com uma variável já com um valor:{
+        Json{
+            "variableName1" : 10,
+            "variableName2" : "hola"
+        }
+    }
+
+    * Sobrescrever uma variável: {
+
+        Json{
+            "variableName1" : 10,
+            "variableName2" : "hola"
+        }
+
+        Json.variableName1 = 15;
+
+    }
+
+    * Para criar uma nova variável em um json: {
+
+        Json = {}
+        Json.newVariable = x;
+
+    }
+
+    * Para deletar uma variável em um JSON{
+        delete jsonName.variableName;
+    }
+
+    * Metodos utilizaveis em JSON(s):{
+
+        JSON.stringify(x, ...){
+
+            Isso transforma um json em um json, só que todo em texto, esse é o principal motivo de um json ser tão incrível, isso torna os 
+            dados muito moldaveis.  
+        
+        }
+
+        JSON.parse(x){
+
+            O JSON.parse transforma um objeto stringficado em um objeto json novamente
+
+        }
+
+    }
 
 
+
+}
+
+SessionStorage:{
+
+    Session storage é basicamente uma forma de gravar dados da sessão do usuário, esses dados serão perdidos assim que ele fechar a aba, mesmo
+    que ele abra a mesma aba novamente, porém caso ocorra um f5 a informação continua ali.
+
+    Lembrando que nem o SessionStorage nem o LocalStorage conseguem guardar todo um objeto, caso seja feito algo fo tipo vai aparecer a string 
+    do object, aquela mensagem de object: object... 
+    Então o necessario para guardar uma informação dessa forma é fazendo um array e percorrendo toda essa seção de atributos de um JSON.
+
+    para fazer um insert de um sessionStorage é simplesmente fazendo um sessionStorage.setItem("x","y") sendo x o nome do valor e y o valor.
+
+    Para acessar as informações de um session ou local Storage, você ao inves de set, sessionStorage.getItem("x");
+
+
+}
 
 ---------------------------Exemplos----------------------------
 
-Exemplos Nova e antigas classes:
+Exemplos Nova e antigas classes:{
 
     Exemplo antiga classes js:
 
@@ -112,30 +203,35 @@ Exemplos Nova e antigas classes:
     console.log(Osvaldo.name, Osvaldo.code);
     console.log(ExibirCadastro(Osvaldo.name, Osvaldo.code));
 
-Exemplo anonymous function:
+}
+
+Exemplo anonymous function:{
     (function calc(x1, x2, operador){
 
         return eval('${x1} ${operador} ${x2}');
     })(let result = 1, 2, "+")
 
     console.log(result);
+}
 
-Exemplo arrow function:
+Exemplo arrow function:{
     let calc = (x1, x2, operador) => {
 
         return eval('${x1} ${operador} ${x2}');
     }
 
     console.log(calc));
+}
 
-Exemplo document class:
+Exemplo document class:{
     document.addEventListener('click' event =>{
 
         console.log(click);
 
     });
+}
 
-Exemplo eval():
+Exemplo eval():{
     function calc(x1, x2, operador){
 
         return eval('${x1} ${operador} ${x2}');
@@ -143,14 +239,16 @@ Exemplo eval():
 
     let result = calc(1, 2, "+");
     console.log(result);
+}
 
-Exemplo function:
+Exemplo function:{
     function somar(){
 
     return se tiver que retornar
     }
+}
 
-Exemplo switch:
+Exemplo switch:{
     switch(cor){
         case "verde":
         console.log("siga");
@@ -167,14 +265,18 @@ Exemplo switch:
         default:
         console.log("sei lá");
     }
+}
 
-Exemplo template string do js (A STRING MONSTRA).
-    console.log('${cliente} seu produto: ${produto} ficou pronto');
+Exemplo template string do js{
+    (A STRING MONSTRA){
+    '${cliente} seu produto: ${produto} ficou pronto';
+    }
+}
 
-Exemplo window class:
+Exemplo window class: {
     window.addEventListener('focus' event =>{
 
         console.log(focus);
 
     });
-
+}
