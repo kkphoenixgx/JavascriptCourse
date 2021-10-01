@@ -11,4 +11,7 @@ mod 60
 
 - Excluindo dados no localStorage
 
-
+não teve introduções de conceitos nessa aula, foi somente
+atualização em alguns métodos que estavam com problema e 
+mudança de local de um método que estava em lugar 
+inapropriado
