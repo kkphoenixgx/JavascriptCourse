@@ -3,8 +3,13 @@
 Dicionário do javascript:
 
 Arrays:{
+
     x.length = para saber a quantidade de itens do array, x[y], sendo y o array que você quer, COMEÇA COM 0 e pode usar expressões numéricas.
     x.push() = adiciona algo a um array
+    x.pop() = tira esse item x do array 
+    x.splice(index, quantidade) = no splice, você fala qual item do array que vc quer tirar com o index e a quantidade de itens contando dele
+    que você quer tirar. exemplo para tirar um item splice(0, 1), vai tirar o item 0 do array e se fosse quantidade = 2, iria tirar o 0 e o 1
+
 }
 
 Date:{
