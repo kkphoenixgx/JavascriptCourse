@@ -41,12 +41,30 @@ Eventos:{
         }
 }
 
-Foreach:{
+Fors:{
+
+    //forEach
     x.forEach(function(value, index){
 
         console.log(x);
     
     })
+
+    //for
+    for(variavel, até quando, o que fazer toda vez){
+        bloco de código do que fazer para cada x.
+    }
+
+    //for in
+    for(variavel in x){
+        bloco de código para cada atributo ou function de um objeto x
+    }
+
+    //for of
+    for(variavel of x){
+        bloco de código para cada valor de x
+    }
+
 }
 
 Funções para conversão de variáveis:{
@@ -160,6 +178,12 @@ SessionStorage:{
 
     Para acessar as informações de um session ou local Storage, você ao inves de set, sessionStorage.getItem("x");
 
+
+}
+
+API de Áudio{
+
+    
 
 }
 
