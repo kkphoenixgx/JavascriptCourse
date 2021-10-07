@@ -1,0 +1,12 @@
+mod 68                                            07/10/21
+
+- Separando rotas do arquivo principal
+
+   O que é contra producente em fazer um site com um
+backend desse jeito que foi feito até agora é que esse
+arquivo index ficaria muito gigantesco para fazer
+manutenção e adicionar features, então é interessante 
+separar os paths em files diferentes, separando os
+arquivos para melhor produtividade e manutenção, fazendo
+o index.js virar realmente só o index desse arquivo.
+
