@@ -1,10 +1,10 @@
 const express = require('express');
-const routesIndex = require('./routes/pathIndex')
-const routeUsers = require('./routes/pathUsers')
+const consign = require('consign');
 
 var app = express();
-app.use(routesIndex);
-app.use('/users', routeUsers);
+
+consign().include('routes').into(app);
+
 
 app.listen(3000, "127.0.0.1", ()=>{
     console.log("Servidor rodando");
