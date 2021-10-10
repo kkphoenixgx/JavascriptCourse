@@ -14,7 +14,7 @@ module.exports = app=>{
 
     });
 
-    app.get('/users/admin', (req, res) => {
+    app.post('/users/admin', (req, res) => {
 
         res.statusCode = 200;
         res.setHeader('content-type', 'application/json')
