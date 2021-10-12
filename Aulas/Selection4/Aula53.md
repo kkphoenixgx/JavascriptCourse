@@ -19,14 +19,15 @@ let db = new NeDB({
     filename: (required com o fileExtension(.exe, .db))
     autoload: (false);
 })
-
 ```
 
   Com isso você pode usar essa variável como seu banco.
   Exemplo: caso queira inserir algo no banco de dados:
 
+```
 db.insert((o json que você quer inserir),
 (function(error, idGerado){
     (geralmente nesse bloco de código tratamos o erro);
     (e se tudo rolou bem);
 }))
+```
