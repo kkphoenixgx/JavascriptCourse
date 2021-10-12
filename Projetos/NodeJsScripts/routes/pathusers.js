@@ -8,14 +8,19 @@ module.exports = app=>{
 
     app.get('/users', (req, res) => {
 
-        res.statusCode = 200;
-        res.setHeader('content-type', 'application/json')
-        res.json({
-            users:[{
-                user: "Kauã Alves",
-                email : "macacodeoculos123@gmail.com",
-                id: 1
-            }]
+        db.find({}).sort({nome : 1}).exec((err, user) => {
+            if(err){
+                console.log(`error: ${err}`);
+                res.statusCode(400).json({
+                    error: err
+                });
+            }else{
+                res.statusCode = 200;
+                res.setHeader('content-type', 'application/json')
+                res.json({
+                    users
+                });
+            }
         });
 
     });

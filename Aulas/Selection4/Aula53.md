@@ -1,11 +1,12 @@
-mod 71                                            11/10/21
+mod 71 <br>
+**11/10/21**
 
-- Persistência de dados com o NeDB
+<h2>Persistência de dados com o NeDB</h2>
 
   NeDB é um banco de dados  muito leve que tem um arquivo
 para cada tipo de informações. para instalar:
 
-                   (npm install neDB) 
+>npm install neDB 
 
   Para utilizar o neDB, você pede o require dele
 no próprio arquivo de path. Exemplo: quer salvar um 
@@ -22,7 +23,9 @@ let db = new NeDB({
 ```
 
   Com isso você pode usar essa variável como seu banco.
-  Exemplo: caso queira inserir algo no banco de dados:
+
+  <h5>inserindo dados com db.insert</h5><br>
+  Exemplo: caso queira inserir algo no banco de dados você utiliza **db.insert**:
 
 ```
 db.insert((o json que você quer inserir),

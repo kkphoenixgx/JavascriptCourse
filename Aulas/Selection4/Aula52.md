@@ -1,6 +1,7 @@
-mod 70                                            10/10/21
+mod 70 <br>
+**10/10/21**
 
--  Recebendo dados via POST e instalando o Postman
+<h2>Recebendo dados via POST e instalando o Postman</h2>
 
   Com percebemos anteriormente, até agora só usamos 
 métodos get nps apps, porém não é por que é mais facil 
@@ -27,16 +28,23 @@ variável requirida pelo método require('body-parser') e
 então podemos usar o método desse require dentro do meu app,
 ou seja dentro do express.
 
-* app.use(bodyParser.json());
+* <h5>app.use(bodyParser.json());</h5><br>
     E falando para o software que queremos usar o método 
   json desse body-parser, estamos pedindo que os dados 
-  enviados sejam transformados em um json.
-  app.use(bodyParser.json())
+  enviados sejam transformados em um json.<br>
+  
+  ~~~javascript
+    app.use(bodyParser.json());
+  ~~~
 
-* app.use(bodyParser.urlencoded( {extend: false} ));
+* <h5>app.use(bodyParser.urlencoded( {extend: false} ));</h5><br>
 
     Quando usamos o método post a url como dizemos antes, 
   fica encriptada, então para o seu código entender essa
   url encriptada com diferentes tipos de criptografia,
   o body-parser tem um método para entender essas 
   criptografias, chamado de .urlencoded 
+
+  ~~~javascript
+    app.use(bodyParser.urlencoded( {extend: false} ));
+  ~~~

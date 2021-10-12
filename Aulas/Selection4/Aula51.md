@@ -1,6 +1,7 @@
-mod 69                                              08/10/21
+mod 69 <br>
+**08/10/21**
 
-- Carregando Rotas com Cosign
+<h2>Carregando Rotas com Cosign</h2>
 
   Ainda nesse assunto de separação de rotas, usar vários
 requires em uma aplicação ainda é algo muito ruim, pois
