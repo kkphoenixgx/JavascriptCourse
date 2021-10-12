@@ -13,11 +13,15 @@ usuário no banco de dados de usuários, você pede o
 require('nedb') e instancia ela numa variável passando
 as configurações do seu banco num objeto JSON. 
 
+'''
+
 require('nedb');
 let db = new NeDB({
     filename: (required com o fileExtension(.exe, .db))
     autoload: (false);
 })
+
+'''
 
   Com isso você pode usar essa variável como seu banco.
   Exemplo: caso queira inserir algo no banco de dados:
