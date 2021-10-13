@@ -10,10 +10,7 @@ module.exports = app=>{
 
         db.find({}).sort({nome : 1}).exec((err, user) => {
             if(err){
-                console.log(`error: ${err}`);
-                res.statusCode(400).json({
-                    error: err
-                });
+                app.Utils.error.send(err, req, res);
             }else{
                 res.statusCode = 200;
                 res.setHeader('content-type', 'application/json')
