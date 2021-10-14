@@ -34,5 +34,20 @@ module.exports = app=>{
             }
         })
     });
+
+    const routeId = app.routes('/users/:id');
+
+    routeId.get((req, res) => {
+        db.findOne({_id: req.params.id}).exec((err, user)=> {
+            if(err){
+                console.log(`error: ${err}`);
+                res.statusCode(300).json({
+                    error: err
+                });
+            }else{
+                res.status(200).json(user);
+            }
+        }); 
+    });
     
 }
