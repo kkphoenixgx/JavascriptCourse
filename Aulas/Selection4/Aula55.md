@@ -51,4 +51,41 @@ Tudo bem simples mesmo e bem legal de se fazer com o consign, é o facilitador d
 
 ><img src="https://i.pinimg.com/originals/99/5a/d5/995ad537dcb285d682b39c0777e9b640.gif"  alt= "nice"/>
 
+<h4>Dica bem interessante:</h4> <br>
 
+Módulos atrás tinham mostrado uma forma da encurtar o código usando simplesmente a rota do path antes da rota normal do arquivo, tem como fazer isso também usando o Consign(), é simplesmente você definir o app.Routes() do arquivo como a rota primaria e chamar o Routes() ao invés do app:
+
+~~~javascript
+/* 
+   Isso é já tendo exportando para o arquivo index o 
+   express e o consign.
+*/ 
+
+var route = app.route('x')
+~~~
+Sendo x o path da rota, se eu tenho um path que é o / é o index, e um /users sendo uma rota que eu quero colocar outra rota no users, exemplo cadastro, ficando: "/users/cadastro"<br><br>
+Concorda comigo que dentro da rota users vai ter diversas funções e eu vou ter que usar /users para todas?<br><br>
+exemplo, eu tenho  a rota cadastro mas tem a rota login também e dentro do arquivo users eu vou tratar a parte login e a parte cadastro e as duas tem /users/ então nesse caso eu posso definir a path do meu app como /users e chamar dentro de route outras paths, já que já estão no arquivo users, então, ficaria assim: 
+
+~~~javascript
+/* 
+   Isso é já tendo exportando para o arquivo index o 
+   express e o consign.
+*/ 
+
+var route = app.route('x')
+/* Ao invés de chamar o app, vamos chamar o meu route que já 
+tem o app
+*/
+
+route.post('/cadastro',fn);
+route.post('/login', fn);
+// sendo fn o que vamos fazer na rota, claro
+
+route.post(fn);
+
+/*
+Ficaria assim chamando a rota users padrão, claro, num código
+ela ficaria lá em cima mas eu tô só mostrando como ficaria
+*/
+~~~

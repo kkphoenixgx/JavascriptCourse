@@ -6,7 +6,9 @@ var db = new NeDB({
 
 module.exports = app=>{
 
-    app.get('/users', (req, res) => {
+    var route = app.route('/users');
+
+    route.get((req, res) => {
 
         db.find({}).sort({nome : 1}).exec((err, user) => {
             if(err){
@@ -22,14 +24,11 @@ module.exports = app=>{
 
     });
 
-    app.post('/users', (req, res) => {
+    route.post((req, res) => {
 
         db.insert(req.body, (error, user)=>{
             if(err){
-                console.log(error)
-                res.status(400).json({
-                    error: error
-                });
+                app.Utils.error.send(err, req, res);
             }else{
                 res.status(200).json(user);
             }
