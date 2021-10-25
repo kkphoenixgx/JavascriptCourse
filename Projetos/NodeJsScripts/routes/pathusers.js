@@ -35,7 +35,7 @@ module.exports = app => {
         })
     });
 
-    const routeId = app.routes('/users/:id');
+    const routeId = app.route('/users/:id');
 
     routeId.get((req, res) => {
         db.findOne({_id: req.params.id}).exec((err, user)=> {
@@ -63,4 +63,16 @@ module.exports = app => {
         });
     });
     
+    
+    routeId.delete((req, res) =>{
+        db.remove({_id: req.params.id}, {}, err=>{
+            if(err){
+                res.statusCode(300).json({
+                    error: err
+                });            }
+            else{
+                res.status(200).json(req.params);
+            }
+        })
+})
 }
