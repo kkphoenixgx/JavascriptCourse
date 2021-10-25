@@ -1,7 +1,7 @@
 mod 75 <br>
 **14/10/21**
 
-<h2>Editando dados do banco</h2>
+<h2>Editando dados do banco com Nedb</h2>
 
 Existem métodos bem conhecidos que lidam com pegar e enviar documentos para o banco, como vimos antes, o get e o post fazem isso muito bem e são bem conhecidos por isso, principalmente pela comunidade de html, mas tem um que é para editar que não é tão conhecido, justamente por não ser usado em html, que é o amigo **put**.
 
