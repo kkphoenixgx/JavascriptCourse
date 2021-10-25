@@ -4,9 +4,9 @@ var db = new NeDB({
     autoload: true
 });
 
-module.exports = app=>{
+module.exports = app => {
 
-    var route = app.route('/users');
+    let route = app.route('/users');
 
     route.get((req, res) => {
 
@@ -48,6 +48,19 @@ module.exports = app=>{
                 res.status(200).json(user);
             }
         }); 
+    });
+
+    routeId.put((req, res) => {
+        db.update({_id: req.params.id}, req.body, err =>{
+            if(err){
+                console.log(`error: ${err}`);
+                res.statusCode(300).json({
+                    error: err
+                });
+            }else{
+                res.status(200).json(Object.assign(req.params,req.body));
+            }
+        });
     });
     
 }
