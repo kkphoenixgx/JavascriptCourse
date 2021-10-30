@@ -5,9 +5,10 @@ var db = new NeDB({
 });
 
 module.exports = app => {
-
-    let route = app.route('/users');
-
+    
+    const route = app.route('/users');
+    const routeId = app.route('/users/:id');
+    
     route.get((req, res) => {
 
         db.find({}).sort({nome : 1}).exec((err, user) => {
@@ -21,10 +22,10 @@ module.exports = app => {
                 });
             }
         });
-
     });
-
     route.post((req, res) => {
+
+        if(app.utils.validator.user(app, req, res)) return false
 
         db.insert(req.body, (error, user)=>{
             if(err){
@@ -35,7 +36,7 @@ module.exports = app => {
         })
     });
 
-    const routeId = app.route('/users/:id');
+    // -----------------Route Id----------------------
 
     routeId.get((req, res) => {
         db.findOne({_id: req.params.id}).exec((err, user)=> {
@@ -49,7 +50,6 @@ module.exports = app => {
             }
         }); 
     });
-
     routeId.put((req, res) => {
         db.update({_id: req.params.id}, req.body, err =>{
             if(err){
@@ -62,8 +62,6 @@ module.exports = app => {
             }
         });
     });
-    
-    
     routeId.delete((req, res) =>{
         db.remove({_id: req.params.id}, {}, err=>{
             if(err){
