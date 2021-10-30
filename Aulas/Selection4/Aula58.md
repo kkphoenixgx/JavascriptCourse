@@ -1,7 +1,6 @@
-mod 76 <br>
-**25/10/21**
+# Excluindo um usuário do NeEDB usando db.remove
 
-## Excluindo um usuário do NeEDB usando db.remove
+mod 76 --**25/10/21**
 
 Antes de você deletar coisas do banco de dados você deve saber que exitem métodos assim como get e post que são usados para formulários que chamam essas rotas da sua aplicação, são até agora 3 e com o delete 4 (**get, post, put, delete**), então entendendo isso, o db.remove, sendo db a variável de banco com o nome sobre uma convenção, fica fácil de entender.
 
@@ -21,5 +20,4 @@ routes.delete((req, res) =>{
         }
     })
 })
-
-~~~ 
+~~~

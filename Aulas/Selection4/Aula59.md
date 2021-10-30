@@ -1,4 +1,7 @@
-### Validando os dados via post (express-validator)
+# Validando os dados via post (express-validator)
+
+Mod 77 -- **29/10/21**
+
 
 A validação de dados não é feita pelo banco, como estamos usando NEDB, a validação não é feita pelo próprio, ela será feita com um módulo do express chamado de **express-validator**.
 
