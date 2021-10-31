@@ -1,4 +1,4 @@
-# Usando express generator para criar umn novo projeto
+# Usando express generator para criar um novo projeto
 
 Mod 79 -- **30/10/21**
 
@@ -11,5 +11,4 @@ então com isso em mente, este é a arquitetura do projeto do curso para melhor 
 
 <img src="..\img\ArquiteturaRESTful.png" alt="image"></img>
 
-Então essa aula ficaria sendo mais uma aula de estruturação de projeto, uma coisa importante a se notar na imagem é que ela é uma arquitetura de software, não está em blocos como geralmente é feita mas está mais fácil de entender do que como componentes. 
-
+Então essa aula ficaria sendo mais uma aula de estruturação de projeto, uma coisa importante a se notar na imagem é que ela é uma arquitetura de software, não está em blocos como geralmente é feita mas está mais fácil de entender do que como componentes.
