@@ -9,6 +9,8 @@ module.exports = app => {
     const route = app.route('/users');
     const routeId = app.route('/users/:id');
     
+    //-----------------Route /users---------------
+
     route.get((req, res) => {
 
         db.find({}).sort({nome : 1}).exec((err, user) => {
@@ -36,7 +38,7 @@ module.exports = app => {
         })
     });
 
-    // -----------------Route Id----------------------
+    // -----------------Route /Id-----------------
 
     routeId.get((req, res) => {
         db.findOne({_id: req.params.id}).exec((err, user)=> {
@@ -72,5 +74,6 @@ module.exports = app => {
                 res.status(200).json(req.params);
             }
         })
-})
+    });
+
 }
