@@ -8,7 +8,6 @@ Tendo isso em mente se você quiser ter o conteúdo do curso, compre-o na Udemy,
 
 então com isso em mente, este é a arquitetura do projeto do curso para melhor exemplificação futura de mim para mim.
 
-
-<img src="..\img\ArquiteturaRESTful.png" alt="image"></img>
+![arquitetura](..\img\ArquiteturaRESTful.png)
 
 Então essa aula ficaria sendo mais uma aula de estruturação de projeto, uma coisa importante a se notar na imagem é que ela é uma arquitetura de software, não está em blocos como geralmente é feita mas está mais fácil de entender do que como componentes.
