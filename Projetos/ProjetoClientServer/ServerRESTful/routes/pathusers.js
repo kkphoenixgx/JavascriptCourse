@@ -4,6 +4,8 @@ var db = new NeDB({
     autoload: true
 });
 
+const { check, validationResult } = require("express-validator");
+
 module.exports = app => {
     
     const route = app.route('/users');
@@ -25,18 +27,23 @@ module.exports = app => {
             }
         });
     });
-    route.post((req, res) => {
 
-        if(app.utils.validator.user(app, req, res)) return false
+    route.post(
+        [
+            check("name", "O nome é obrigatório.").notEmpty(),
+            check("email", "Email inválido.").notEmpty().isEmail(),
+        ], (req, res) => {
 
-        db.insert(req.body, (error, user)=>{
-            if(err){
-                app.Utils.error.send(err, req, res);
-            }else{
-                res.status(200).json(user);
-            }
-        })
-    });
+            db.insert(req.body, (error, user)=>{
+                if(err){
+                    app.Utils.error.send(err, req, res);
+                }else{
+                    res.status(200).json(user);
+                }
+            });
+
+        }
+    );
 
     // -----------------Route /Id-----------------
 
@@ -52,6 +59,7 @@ module.exports = app => {
             }
         }); 
     });
+
     routeId.put((req, res) => {
         db.update({_id: req.params.id}, req.body, err =>{
             if(err){
@@ -64,6 +72,7 @@ module.exports = app => {
             }
         });
     });
+    
     routeId.delete((req, res) =>{
         db.remove({_id: req.params.id}, {}, err=>{
             if(err){

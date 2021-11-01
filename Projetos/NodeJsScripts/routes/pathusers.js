@@ -23,18 +23,21 @@ module.exports = app => {
             }
         });
     });
-    route.post((req, res) => {
+    route.post(
+        [
+            check("name", "O nome é obrigatório.").notEmpty(),
+            check("email", "Email inválido.").notEmpty().isEmail(),
+        ], (req, res) => {
 
-        if(app.utils.validator.user(app, req, res)) return false
-
-        db.insert(req.body, (error, user)=>{
-            if(err){
-                app.Utils.error.send(err, req, res);
-            }else{
-                res.status(200).json(user);
-            }
-        })
-    });
+            db.insert(req.body, (error, user)=>{
+                if(err){
+                    app.Utils.error.send(err, req, res);
+                }else{
+                    res.status(200).json(user);
+                }
+            });
+        }
+    );
 
     // -----------------Route Id----------------------
 
