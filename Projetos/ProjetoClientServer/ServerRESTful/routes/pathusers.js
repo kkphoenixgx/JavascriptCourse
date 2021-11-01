@@ -15,7 +15,7 @@ module.exports = app => {
 
     route.get((req, res) => {
 
-        db.find({}).sort({nome : 1}).exec((err, user) => {
+        db.find({}).sort({nome : 1}).exec((err, users) => {
             if(err){
                 app.Utils.error.send(err, req, res);
             }else{
