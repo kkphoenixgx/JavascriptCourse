@@ -22,4 +22,8 @@ Para importar o ajax para o seu código é simplesmente fazer uma *instancia da 
 
 **(pausa para refazer o dicionário de js)**... *muito tempo depois*...
 
+Mod 81 -- **07/11/21**
+
+Voltando depois de algum tempo, exemplo:
+
 

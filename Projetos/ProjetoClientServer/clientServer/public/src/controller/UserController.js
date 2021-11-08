@@ -283,9 +283,9 @@ class UserController {
     
     //saving data- methods
         
-        selectAllLocalStorageDatas(){
+        selectAllFromDb(){
 
-            let users = User.getUsersDataSession();
+            
 
             users.forEach( dataUser=>{
                 let user = new User();

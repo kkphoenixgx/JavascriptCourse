@@ -163,14 +163,15 @@ mas ela é geralmente usada como uma call back.
 
 ## DOM
 
-* ### window
+### window
+
   Uma coisa muito importante a se ressaltar é que os métodos que estão com (.window) é por que não precisam ser chamados pelo .window, pois já estão no window
 
-  * #### window.isNaN(x)
+* #### window.isNaN(x)
 
     Essa função valida se algo é um número ou não, retornando um boolean de true ou false e ele valida se é um número ou não mesmo se for uma string, validando false se for um número e true se não for.
 
-  * #### (window.)sessionStorage
+* #### (window.)sessionStorage
 
     Session storage é basicamente uma forma de gravar dados da sessão do usuário, esses dados serão perdidos assim que ele fechar a aba, mesmo que ele abra a mesma aba novamente, porém caso ocorra um f5 a informação continua ali.  
     Lembrando que nem o SessionStorage nem o LocalStorage conseguem guardar todo um objeto, caso seja feito algo do tipo vai aparecer a string do object, aquela mensagem de object: object...  
@@ -187,7 +188,7 @@ mas ela é geralmente usada como uma call back.
     sessionStorage.getItem("name");
     ~~~
 
-  * #### (window.)eval(x)
+* #### (window.)eval(x)
 
     O eval basicamente calcula uma expressão numerica em string
 
@@ -196,6 +197,19 @@ mas ela é geralmente usada como uma call back.
     //isso resulta em 4 (number).
     ~~~
 
+* #### window.requestAnimationFrames(fn)
+
+  Esse método da window é bem auto explicativo pelo nome mas ele é extremamente útil, principalmente na hora de criar jogos em js, esse método retorna um temporizador e ele acumula esse temporizador que acumula o tempo passado dês da abertura da tela, esse método deixa as coisas mais suaves entre outras coisas quando usado em animações.  
+
+  exemplo de gameLoop:
+
+  ~~~js
+  function gameLoop(time){
+    window.requestAnimationFrame(gameLoop)
+  }
+  window.requestAnimationFrame(gameLoop)
+  ~~~
+  
 ## Classes
 
 * ### Exemplo classe em js
