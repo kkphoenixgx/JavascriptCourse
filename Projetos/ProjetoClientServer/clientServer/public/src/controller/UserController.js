@@ -9,8 +9,7 @@ class UserController {
 
         this.onSubmit();
         this.onEdit();
-        this.selectAllLocalStorageDatas();
-
+        this.selectAllFromDb();
     }
 
 // index methods:
@@ -296,7 +295,7 @@ class UserController {
                 ajax.onload= event => {
                     let object = JSON.parse(ajax.responseText); 
         
-                    object.forEach( dataUser=>{
+                    object.users.forEach( dataUser=>{
                         let user = new User();
                         user.loadFromJson(dataUser);
                         this.addUserLine(user);

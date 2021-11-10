@@ -1,12 +1,11 @@
 const express = require('express');
-const router = express.Router();
-
-const restify = request('restify-client');
-const assert = request('assert');
-
+const assert = require('assert');
+var restify = require('restify-clients');
+var router = express.Router();
+  
 // create a json client for restify
-var client = restify.createJsonCLient({
-    url: 'http//localhost:4000'
+var client = restify.createJsonClient({
+  url: 'http://localhost:4000'
 })
 
 /* GET users listing. */
