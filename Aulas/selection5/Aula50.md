@@ -32,4 +32,4 @@ Uma desses comandos é o --ejs que adiciona as pastas que você teria que criar 
 
 sendo X o nome da pasta que deve ser criada e lembra que deve ser usado um **npm install** para a dependências do express.
 
-obs: A pasta public é onde vai ficar o index do client mas ele deve ser em um arquivo ejs, que é um arquivo html, basicamente.
+obs: A pasta view é onde vai ficar o index do client mas ele deve ser em um arquivo ejs, que é um arquivo html, basicamente. E a pasta public é onde vai ficar todos os outros arquivos.
