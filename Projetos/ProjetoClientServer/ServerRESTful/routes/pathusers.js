@@ -30,8 +30,8 @@ module.exports = app => {
 
     route.post(
         [
-            check("name", "O nome é obrigatório.").notEmpty(),
-            check("email", "Email inválido.").notEmpty().isEmail(),
+            check("_name", "O nome é obrigatório.").notEmpty(),
+            check("_email", "Email inválido.").notEmpty().isEmail(),
         ], (req, res) => {
 
             db.insert(req.body, (error, user)=>{
