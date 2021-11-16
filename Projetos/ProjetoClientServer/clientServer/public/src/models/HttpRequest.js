@@ -1,11 +1,11 @@
 class HttpRequest {
 
-    static request(method, url, params= {}){
+    static request(method, url, params = {}){
 
         return new Promise(((resolve, reject) => {
             let ajax = new XMLHttpRequest();
             
-            ajax.open(method.toUppercase(), url);
+            ajax.open(method.toUpperCase(), url);
             
 
             // quando o próprio ajax der errado, já para e mostra o erro no reject da promise
@@ -23,7 +23,7 @@ class HttpRequest {
                     console.error(error);
                 }
                 
-                resolve(object); 
+                resolve(object);
             };
 
             ajax.send();
@@ -33,19 +33,19 @@ class HttpRequest {
     }
 
     static get(url, params = {}){
-        HttpRequest('get', url, params);
+        return HttpRequest.request('get', url, params);
     }
 
     static delete(url, params = {}){
-        HttpRequest('DELETE', url, params);
+        return HttpRequest.request('DELETE', url, params);
     }
 
     static put(url, params = {}){
-        HttpRequest('PUT', url, params);
+        return HttpRequest.request('PUT', url, params);
     }
 
     static post(url, params = {}){
-        HttpRequest('POST', url, params);
+        return HttpRequest.request('POST', url, params);
     }
 
 
