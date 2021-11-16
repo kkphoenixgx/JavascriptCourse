@@ -122,13 +122,12 @@ class User{
 
             let usersID = parseInt(localStorage.getItem("usersID"));
 
-            if(!usersID.id > 0) {
-                usersID.id = 0;
-            }
+            if (!usersID > 0) usersID = 0;
+    
             usersID++;
-
-            localStorage.setItem("usersID", usersID)
-
+    
+            localStorage.setItem("usersID", usersID);
+    
             return usersID;
         }
         
