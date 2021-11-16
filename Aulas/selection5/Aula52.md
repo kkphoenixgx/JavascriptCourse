@@ -22,13 +22,13 @@ Para importar o ajax para o seu código é simplesmente fazer uma *instancia da 
 
 Mod 81 -- **08/11/21**
 
-Voltando depois de algum tempo, exemplo:
+Voltando depois de algum tempo, temos diferentes métodos, como o open(), o onload() exemplo:
 
 ~~~js
 let ajax = new XMLHttpRequest();
 
-// Instanciado o ajax, o ajax precisa entender o que eçe precisa fazer e onde. 
-ajax.open('GET', '/users');
+// Instanciado o ajax, o ajax precisa entender o que precisa fazer e onde. 
+ajax.open("method", "path");
 
 /* 
     Uma vez que você fez isso, você não sabe quanto tempo vai 
@@ -50,5 +50,7 @@ ajax.onload = event => {
     let obj = JSON.parse(ajax.responseText);
 
     // E assim podemos fazer o que quisermos com o json
-} 
+}
+
+ajax.onerror= error => {console.error(error)}
 ~~~

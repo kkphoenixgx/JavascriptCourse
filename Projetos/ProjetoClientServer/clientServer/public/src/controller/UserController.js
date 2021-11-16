@@ -284,24 +284,12 @@ class UserController {
         
         // Seleciona do banco via ajax
         selectAllFromDb(){
-
-            let ajax = { users : [] }
-
-            try       { ajax = new XMLHttpRequest; }
-            catch(e)  { console.error(e) }
-
-            ajax.open('GET', '/users');
-
-                ajax.onload= event => {
-                    let object = JSON.parse(ajax.responseText); 
-        
-                    object.users.forEach( dataUser=>{
-                        let user = new User();
-                        user.loadFromJson(dataUser);
-                        this.addUserLine(user);
-                    });
-                };
-            
-            ajax.send();
+            HttpRequest.get('/users').then( data =>{
+                data.users.forEach( dataUser=>{
+                    let user = new User();
+                    user.loadFromJson(dataUser);
+                    this.addUserLine(user);
+                });
+            });
         }
 }

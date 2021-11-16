@@ -258,9 +258,9 @@ console.log(Osvaldo.name, Osvaldo.code);
 console.log(ExibirCadastro(Osvaldo.name, Osvaldo.code));
 ~~~
 
-## Objetos pré determinados
+## Classes pré determinadas
 
-* ### Date
+* ### Date()
 
   * **x = new Date( )** = Dá para pegar a data formatada
 
@@ -273,6 +273,105 @@ console.log(ExibirCadastro(Osvaldo.name, Osvaldo.code));
   * **x.toLocaleDateString("x")** = pega a data do formato local  
 
   * **x.getTime()** = retorna em o timeStamp em  milissegundos
+
+* ### Promise()
+
+Uma promise pode encapsular operações assincronas, trazendo várias vantagens em seu uso.
+
+Criando uma promise:
+
+Promise é uma classe nativa do js que você instância para uma variável, que em seu construtor precisa de uma função, que possua dois parâmetros por padrão, um **resolve** e um **reject**, que poderiam ser qualquer nome mas os nomes são uma convenção, que é necessária para um clean code.
+
+Sendo os dois funções que podem ser executadas como um callback ou um valor, sendo *resolve* quando a função principal for feita corretamente e *reject* quando a função principal não for bem sucedida.
+E para o uso dessas, podemos chamar pela variável instanciada, ou seja, pelo objeto, o método **x.then(fn)** que recebe como função o que fazer com essa informação mas o legal disso é que o then retorna de novo uma nova promise, então eu posso fazer:
+
+> then(value => value).then(value => value).then(value => value)
+
+Infinito, lembrando que esse value ele pode mudar simplesmente transformando esse segundo value em uma arrow function que retorna outra coisa ao invés do then, exemplo:
+
+~~~js
+promise.
+then(value => {
+    return value + 1
+})
+.then(value => {
+    return value * 2
+})
+/*
+      Mas como pode ver a promise pode receber dois then, 
+    então a gente só pula linha para n ficar: 
+
+    promise.then(value => value).then()
+    Então fica do jeito escrito
+
+    para deixar o código mais legivel 
+    
+    (☞ﾟヮﾟ)☞ clean code ☜(ﾟヮﾟ☜)
+*/
+~~~
+
+Então além do resolve e o then temos o reject e o **catch( )**, que faz quase a mesma coisa que o then recebendo o valor do resolve, o catch() recebe o valor do reject caso o reject seja invocado, e ele tem um adicional, mesmo que dê certo a Promise, ele receberá o erro de qualquer *then()* que dê errado, então caso um erro ocorra em um dos *then()* ele receberá a mensagem de erro desse *then()*.
+
+Exemplo completo de uma Promise:
+
+~~~js
+var promise = new Promise((resolve, reject)=>{
+    
+    let aNumber = 47;
+
+    if(aNumber === 47){
+        
+        // passa esse valor para o parâmetro do then
+        resolve(aNumber);
+
+    }else {
+    
+        // passe esse valor para o parâmetro od catch
+        reject(aNumber);
+    
+    }
+
+})
+
+
+promise
+    .then(value => value)
+    /* 
+        👆 esse => é basicamente a mesma coisa que fazer isso:
+    
+        promise.then(value => {
+                return value
+            }) 
+        
+        Para quem não sabe o => significa retorne, então 
+        quando você faz uma arrow function por exemplo, vc 
+        diz que você está retornando para uma variável o 
+        resultado de uma função ou uma função.
+        
+    */
+    .then(value => {
+        value = (value * 4) / 2
+        console.log(value);
+    })
+    .catch(rejectValue => {
+        console.log(rejectValue);
+    })
+
+~~~
+
+* ### XMLHttpRequest() || Ajax
+
+Lembrando que existem dois tipos de formas detratar esses métodos do ajax, uma como se fosse um atributo = ajax.method = x => {} e outra como realmente um método ajax.x(x, y...) E que ajax seria a instância da classe XMLHttpRequest.
+
+#### Se trata como método
+
+* ajax open("method", "path") = pega os dados a partir de um método html(post, get, delete...) e uma rota("path")
+
+#### Se trata como variável
+
+* ajax.onload(event) = quando o ajax for carregado, ele vai mandar um evento e você pode fazer o que quiser com esse evento event => {}
+
+* ajax.onerror(event) = quando o próprio ajax der errado, ele vai mandar um evento de erro  
 
 ## Métodos para elemento html
 
