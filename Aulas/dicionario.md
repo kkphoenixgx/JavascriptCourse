@@ -361,7 +361,7 @@ promise
 
 * ### XMLHttpRequest() || Ajax
 
-Lembrando que existem dois tipos de formas detratar esses métodos do ajax, uma como se fosse um atributo = ajax.method = x => {} e outra como realmente um método ajax.x(x, y...) E que ajax seria a instância da classe XMLHttpRequest.
+Lembrando que existem dois tipos de formas de tratar esses métodos do ajax, uma como se fosse um atributo = ajax.method = x => {} e outra como realmente um método ajax.x(x, y...) E que ajax seria a instância da classe XMLHttpRequest.
 
 #### Se trata como método
 
