@@ -9,32 +9,22 @@ class HttpRequest {
             ajax.open(method.toUpperCase(), url);
 
             ajax.onerror = event => {
-
                 reject(e);
-
             };
     
             ajax.onload = event => {
     
                 let obj = {};
-    
                 try {
-    
-                    obj = JSON.parse(ajax.responseText);
-    
+                    obj = JSON.parse(ajax.responseText);    
                 } catch (e) {
-    
                     reject(e);
                     console.error(e);
-    
                 }
 
                 resolve(obj);
-    
             };
-    
             ajax.send();
-
         });
 
     }
