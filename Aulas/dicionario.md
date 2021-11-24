@@ -142,6 +142,9 @@ mas ela é geralmente usada como uma call back.
 
   Para usar um evento no js é so usar o addEventListener(x), sendo x o evento que você quer escutar:
 
+* **keyup** = quando você solta a tecla do teclado
+* **keypress** = quando a tecla está pressionada
+* **keydown** = o evento ocorre quando a tecla é pressionada e não entende Ctrl, alt e shift
 * **click** = quando clicar;
 * **dbclick** = quando acontece dois clicks.
 * **contextmenu** = quando clica com o botão direito;
@@ -160,6 +163,15 @@ mas ela é geralmente usada como uma call back.
 
     });
   ~~~
+
+## Propriedades do event
+
+Entre parenteses está o código do evento para o **event.keycode** e entre '' está o **event.key** e estão organizados pelos seus event.keycode
+
+* 'ArrowLeft' = seta para a esquerda (code = 37)
+* 'ArrowUp' = seta para cima (code = 38)
+* 'ArrowRight' = seta para a direita (code = 39)
+* 'ArrowDown' = seta para baixo (code= 40)
 
 ## DOM
 

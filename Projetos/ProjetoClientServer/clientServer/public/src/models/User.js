@@ -127,18 +127,17 @@ class User{
         }
 
         removeUser(){
-            let users = User.getUsersDataSession();
+            
+            return HttpRequest.delete(`/users/${this.id}`);
 
-            users.forEach((userData, index) => {
+            // let users = User.getUsersDataSession();
+            // users.forEach((userData, index) => {
 
-                if (this._id == userData._id){
-                    users.splice(index, 1);
-                }
+            //     if (this._id == userData._id){
+            //         users.splice(index, 1);
+            //     }
 
-            });
-
-            localStorage.setItem("users", JSON.stringify(users));
-
+            // });
 
         }
 
@@ -156,11 +155,7 @@ class User{
         }
         
         static getUsersDataSession(){
-            let users = [];
-            if(localStorage.getItem("users")){
-                users = JSON.parse(localStorage.getItem("users"));
-            }
-            return users
+            return HttpRequest.get(`/users`);
         }
         
 }

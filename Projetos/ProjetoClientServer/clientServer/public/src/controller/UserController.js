@@ -184,9 +184,10 @@ class UserController {
                     
                     let user = new User();
                     user.loadFromJson(JSON.parse(tr.dataset.user));
-                    user.removeUser();
-                    tr.remove();
-                    this.refreshUserNumbers();
+                    user.removeUser().then(data => {
+                        tr.remove();
+                        this.refreshUserNumbers();
+                    });
     
                 }
     
@@ -284,7 +285,7 @@ class UserController {
         
         // Seleciona do banco via ajax
         selectAllFromDb(){
-            HttpRequest.get('/users').then( data =>{
+            User.getUsersDataSession().then( data =>{
                 data.users.forEach( dataUser=>{
                     let user = new User();
                     user.loadFromJson(dataUser);
