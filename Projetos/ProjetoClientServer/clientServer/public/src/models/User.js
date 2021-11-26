@@ -155,7 +155,7 @@ class User{
         }
         
         static getUsersDataSession(){
-            return HttpRequest.get(`/users`);
+            return Fetch.get(`/users`);
         }
         
 }
