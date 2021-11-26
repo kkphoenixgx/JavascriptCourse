@@ -16,4 +16,70 @@ Fetch veio no 2015 na ideia para substituir o ajax
 
 polifie = é uma algo para polir, para encobrir os buracos de uma aplicação, como uma massa corrida passada numa parede e no ambiente de desenvolvimento sempre que uma feature nova é lançada e os navegadores ainda não suportam isso, os desenvolvedores fazem uma polifie para essa aplicação não quebrar nos navegadores que ainda não usam isso.
 
-Porém 2021 que é a época na qual estou fazendo esse curso, todos os navegadores provavelmente já suportam uma fetch API. E a ideia dela é que ele suporta melhor promises no js.
+Porém 2021 que é a época na qual estou fazendo esse curso, todos os navegadores provavelmente já suportam uma fetch API. E a ideia dela é que ele suporta melhor promises no js. Ele é exatamente igual ao ajax só que suporta json e tem outras funcionalidades.
+
+Exemplo com comentários:
+
+~~~js
+/*
+  No caso este é um método que vai conseguir processar todos
+os métodos, então faremos aqui um fluxo para o request que
+ seria a requisição do express
+*/
+static request(method, url, params = {}) {
+
+    return new Promise((resolve, reject) => {
+
+        let request;
+        switch(method.toLowerCase()){
+            /*
+              Se for um get só vai precisar da rota então 
+            trataremos de uma forma diferente
+            */
+            case 'get':
+                request = url;
+            break; 
+            /*
+                E os outros usando as informações passadas
+            */
+            default:
+                request = new Request( url, {
+                    
+                    method,
+                    body : JSON.stringify(params),
+                    Headers : new Headers({
+                        'content-type': 'application/json'
+                    })
+
+                } );
+            break;
+        }
+
+        //Faça a requisição da fetch
+        fetch(request).then( response=>{
+
+            /*
+             faça a requisição via json direto já que 
+             agr o Fetch suporta e se der errado
+             manda para a promise o erro
+            */
+            response.json().then( json =>{
+            
+                resolve(json);
+            
+            }).catch( e => {
+                reject(e);
+            });
+
+        /* 
+            Se a requisição da fetch der errado manda
+            para a promise o erro
+        */
+        }).catch( e => {
+            reject(e);
+        });
+
+    });
+
+}
+~~~
