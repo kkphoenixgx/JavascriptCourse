@@ -3,12 +3,12 @@ const consign = require('consign');
 const bodyParser = require('body-parser');
 const expressValidator = require('express-validator');
 /*
- The Express Validator actually have been used on the pathusers.js file, that is new syntax of the ExpressValidator 
+ The Express Validator actually have been used on the path users.js file, that is new syntax of the ExpressValidator 
 */
 
 var app = express();
-app.use(bodyParser.urlencoded( { extended: false } ));
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded( { extended: false, limit: '50mb' } ));
+app.use(bodyParser.json( { limit: '50mb' } ));
 
 consign().include('routes').include('Utils').into(app);
 
