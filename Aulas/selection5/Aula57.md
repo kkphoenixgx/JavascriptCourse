@@ -57,7 +57,6 @@ static request(method, url, params = {}) {
 
         //Faça a requisição da fetch
         fetch(request).then( response=>{
-
             /*
              faça a requisição via json direto já que 
              agr o Fetch suporta e se der errado
