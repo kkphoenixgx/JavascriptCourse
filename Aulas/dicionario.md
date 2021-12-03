@@ -371,15 +371,7 @@ promise
 
 ~~~
 
-* ### XMLHttpRequest() || Ajax
-
-Lembrando que existem dois tipos de formas de tratar esses métodos do ajax, uma como se fosse um atributo = ajax.method = x => {} e outra como realmente um método ajax.x(x, y...) E que ajax seria a instância da classe XMLHttpRequest.
-
-#### Se trata como método
-
-* ajax open("method", "path") = pega os dados a partir de um método html(post, get, delete...) e uma rota("path")
-
-* ### Math
+* ### Math methods
 
   * **Math.random()** = dá para você um número aleatório entre 0 e 1.
   * **Math.floor()** = define um valor máximo com um *ex:
@@ -389,7 +381,7 @@ Lembrando que existem dois tipos de formas de tratar esses métodos do ajax, uma
 
   * **Math.round()** = arredonda o número para o mais perto de um inteiro
 
-    * **Random Floor Round** =  Você pode definir um valor x randomico de -100 a 100 sem o 0:
+  * **Random Floor Round** =  Você pode definir um valor x randomico de -100 a 100 sem o 0:
 
     ~~~js
     //gera para mim um número de 1 a 100
@@ -402,11 +394,90 @@ Lembrando que existem dois tipos de formas de tratar esses métodos do ajax, uma
     num *= Math.round(Math.random()) ? 1 : -1;
     ~~~
 
-#### Se trata como variável
+* ### XMLHttpRequest() || Ajax
+
+Lembrando que existem dois tipos de formas de tratar esses métodos do ajax, uma como se fosse um atributo = ajax.method = x => {} e outra como realmente um método ajax.x(x, y...) E que ajax seria a instância da classe XMLHttpRequest.
+
+#### Trata-se como método
+
+* ajax open("method", "path") = pega os dados a partir de um método html(post, get, delete...) e uma rota("path")
+
+#### Trata-se como variável
 
 * ajax.onload(event) = quando o ajax for carregado, ele vai mandar um evento e você pode fazer o que quiser com esse evento event => {}
 
 * ajax.onerror(event) = quando o próprio ajax der errado, ele vai mandar um evento de erro  
+
+* ### fetch
+
+A fetch API, diferentemente do ajax, suporta json, então nela, você pode usar o json direto sem problemas. Ela possui melhor suporte as promises do js, que para uma api, é muito importante para conseguir tratar possiveis erros, imprevistos e outros.
+
+Para chamar os métodos via fetch é bem simples, basta usar fetch(metodo) e isso retorna para você uma promessa, que como qualquer outra, pode ser pega usando then. e com isso podemos tratar retornando via resolve ou reject o resultado da request
+
+Exemplo de um método que usa fetch:
+
+~~~js
+/*
+  No caso este é um método que vai conseguir processar todos
+os métodos, então faremos aqui um fluxo para o request que
+ seria a requisição do express
+*/
+static request(method, url, params = {}) {
+
+    return new Promise((resolve, reject) => {
+
+        let request;
+        switch(method.toLowerCase()){
+            /*
+              Se for um get só vai precisar da rota então 
+            trataremos de uma forma diferente
+            */
+            case 'get':
+                request = url;
+            break; 
+            /*
+                E os outros usando as informações passadas
+            */
+            default:
+                request = new Request( url, {
+                    
+                    method,
+                    body : JSON.stringify(params),
+                    Headers : new Headers({
+                        'content-type': 'application/json'
+                    })
+
+                } );
+            break;
+        }
+
+        //Faça a requisição da fetch
+        fetch(request).then( response=>{
+            /*
+             faça a requisição via json direto já que 
+             agr o Fetch suporta e se der errado
+             manda para a promise o erro
+            */
+            response.json().then( json =>{
+            
+                resolve(json);
+            
+            }).catch( e => {
+                reject(e);
+            });
+
+        /* 
+            Se a requisição da fetch der errado manda
+            para a promise o erro
+        */
+        }).catch( e => {
+            reject(e);
+        });
+
+    });
+
+}
+~~~
 
 ## Métodos para elemento html
 
@@ -423,6 +494,9 @@ exemplos :
 * **querySelectorAll()** = Ele faz basicamente a mesma coisa que o querySelector() acima, porém o querySelectorAll() seleciona vários elementos html somente colocando , e dizendo o próximo.
 
     var elements = querySelectorAll(seletorCss1, seletorCss2)
+
+* **object.style.x** = Com o método style, podemos definir o style x do objeto, exemplo:
+  > **gameBoard.style.border = 'black 2px solid'**;
 
 ## JSON
 
