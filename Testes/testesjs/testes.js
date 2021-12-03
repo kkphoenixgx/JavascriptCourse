@@ -59,12 +59,11 @@
     console.log(Carro1);
     console.log(Carro1.model);
     console.log(Carro1.modelAndYear);
-
     */
 
 // --------------------------Modules--------------------------
 
-/*
+    /*
     import SnakeClass from "./TextClass.js";
 
     let Snake = new SnakeClass;
@@ -73,3 +72,19 @@
     Snake.snakeParts.push(number1);
     console.log(Snake.snakeParts);
 */
+
+// ---------------------------Math----------------------------
+
+    // let number =  Math.floor(Math.random() * -20);
+    // console.log(number)
+
+    // console.log(Math.round(Math.random()));
+
+    // var num = Math.floor(Math.random()*99) + 1;
+    // num *= Math.round(Math.random()) ? 1 : -1;
+    // console.log(num);
+
+    // var Number = Math.round(Math.random * 20);
+    
+    // console.log(Math.round(Math.random()) ? 1 : -1);
+    // console.dir(Math.round(Math.random()) ? true : false);

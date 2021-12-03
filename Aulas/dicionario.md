@@ -164,7 +164,7 @@ mas ela é geralmente usada como uma call back.
     });
   ~~~
 
-## Propriedades do event
+### Propriedades do event
 
 Entre parenteses está o código do evento para o **event.keycode** e entre '' está o **event.key** e estão organizados pelos seus event.keycode
 
@@ -222,7 +222,7 @@ Entre parenteses está o código do evento para o **event.keycode** e entre '' e
   window.requestAnimationFrame(gameLoop)
   ~~~
   
-## Classes
+## Classes em js
 
 * ### Exemplo classe em js
 
@@ -378,6 +378,29 @@ Lembrando que existem dois tipos de formas de tratar esses métodos do ajax, uma
 #### Se trata como método
 
 * ajax open("method", "path") = pega os dados a partir de um método html(post, get, delete...) e uma rota("path")
+
+* ### Math
+
+  * **Math.random()** = dá para você um número aleatório entre 0 e 1.
+  * **Math.floor()** = define um valor máximo com um *ex:
+
+    > Math.floor(Math.random() * 10)
+    > Retornará um número de 0 a 10
+
+  * **Math.round()** = arredonda o número para o mais perto de um inteiro
+
+    * **Random Floor Round** =  Você pode definir um valor x randomico de -100 a 100 sem o 0:
+
+    ~~~js
+    //gera para mim um número de 1 a 100
+    var num = Math.floor(Math.random()*99) + 1;
+
+    /*
+     seguinte, arredonda um número de 0 a 1 aleatório, se for 1, 
+     multiplica com a variável num, se não multiplica -1 com o 1
+    */
+    num *= Math.round(Math.random()) ? 1 : -1;
+    ~~~
 
 #### Se trata como variável
 
