@@ -498,6 +498,8 @@ exemplos :
 * **object.style.x** = Com o método style, podemos definir o style x do objeto, exemplo:
   > **gameBoard.style.border = 'black 2px solid'**;
 
+* **object.click()** = Simplesmente faz um clique em um objeto e um macete desse método é que ele pode frazer um click em objetos que não tem padding.
+
 ## JSON
 
 * ### O que é json?
