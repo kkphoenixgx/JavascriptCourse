@@ -18,10 +18,46 @@ export default class DropBox {
             this.inputFilesElement.addEventListener( 'change', event =>{
 
                 this.snakeBarModalElement.style.display = 'block';
-                // event.target.files
-
+                this.uploadFiles(event.target.files)
             } );
 
         });
     }
+
+    uploadFiles(files){
+
+        let promises = [];
+        [...files].forEach(file => {
+            
+            promises.push(new Promise( (resolve, reject) =>{
+
+                let ajax  = new XMLHttpRequest();
+
+                ajax.open('POST', '/UPLOAD');
+
+                ajax.onload = event =>{
+                    try {
+                        resolve(JSON.parse(ajax.responseText));
+                    } catch (error) { 
+                        reject(error)
+                    }
+
+                } 
+                
+                ajax.onerror = event =>{
+                    reject(event);
+                }
+
+                let formData = new FormData();
+                formData.append('input-file', file);
+
+                ajax.send(formData)
+
+            }));
+
+            return Promise.all(promises)
+
+        })
+    }
+
 }
