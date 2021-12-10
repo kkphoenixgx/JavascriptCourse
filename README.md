@@ -1,6 +1,6 @@
 # JavascriptCourse
-This repository is a repository for my javascript course, this repository is all made for who speaks portuguese. 
-So if you don't speak portuguese, that is not made to you, but you can watch my projects in /Projects directory, enjoy.
+This repository is a repository for my javascript course, this repository was all made to who speaks portuguese. 
+So if you don't speak portuguese, that was not made to you, but you can check my projects in /Projects directory, enjoy.
 
 ----
 
