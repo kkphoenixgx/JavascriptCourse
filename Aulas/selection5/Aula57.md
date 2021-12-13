@@ -14,7 +14,7 @@ Mod 88 -- **26/11/21**
 
 Fetch veio no 2015 na ideia para substituir o ajax
 
-polifie = é uma algo para polir, para encobrir os buracos de uma aplicação, como uma massa corrida passada numa parede e no ambiente de desenvolvimento sempre que uma feature nova é lançada e os navegadores ainda não suportam isso, os desenvolvedores fazem uma polifie para essa aplicação não quebrar nos navegadores que ainda não usam isso.
+**polifie** = é uma algo para polir, para encobrir os buracos de uma aplicação, como uma massa corrida passada numa parede e no ambiente de desenvolvimento sempre que uma feature nova é lançada e os navegadores ainda não suportam isso, os desenvolvedores fazem uma polifie para essa aplicação não quebrar nos navegadores que ainda não usam isso.
 
 Porém 2021 que é a época na qual estou fazendo esse curso, todos os navegadores provavelmente já suportam uma fetch API. E a ideia dela é que ele suporta melhor promises no js. Ele é exatamente igual ao ajax só que suporta json e tem outras funcionalidades.
 
