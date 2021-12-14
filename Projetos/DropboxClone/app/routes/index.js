@@ -15,7 +15,7 @@ router.post('/upload', function(req, res){
       keepExtensionsFiles: true
   });
 
-  form.parse(FormReq, (error, fields, files) =>{
+  form.parse(req, (error, fields, files) =>{
       res.json({
         files
       });

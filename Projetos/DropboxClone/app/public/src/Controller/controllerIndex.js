@@ -1,12 +1,21 @@
+import { ConverterToAGoodLook } from "../Utils/DateUtils.js"
 export default class DropBox {
     constructor(){
-        // Object
+        // HTML Object
         this.btnSendFilesElement = document.querySelector('#btn-send-file')
         this.inputFilesElement = document.querySelector('#files')
         this.snakeBarModalElement = document.querySelector('#react-snackbar-root')
 
+        //ModalBar HTML objects
+        this.progressModalElement =  this.snakeBarModalElement.querySelector('.mc-progress-bar-fg')
+        this.progressBarFileNameElement = this.snakeBarModalElement.querySelector('.filename')
+        this.progressBarTimeLeftElement= this.snakeBarModalElement.querySelector('.timeleft')
+
+        // initializing functions
         this.initButtonEvents()
     }
+
+    // main methods
 
     initButtonEvents(){
         this.btnSendFilesElement.addEventListener( 'click', event =>{
@@ -17,8 +26,9 @@ export default class DropBox {
 
             this.inputFilesElement.addEventListener( 'change', event =>{
 
-                this.snakeBarModalElement.style.display = 'block';
+                this.toggleOnloadModal();
                 this.uploadFiles(event.target.files)
+                this.inputFilesElement.value = '';
             } );
 
         });
@@ -36,6 +46,7 @@ export default class DropBox {
                 ajax.open('POST', '/UPLOAD');
 
                 ajax.onload = event =>{
+                    this.toggleOnloadModal(false);
                     try {
                         resolve(JSON.parse(ajax.responseText));
                     } catch (error) { 
@@ -45,7 +56,13 @@ export default class DropBox {
                 } 
                 
                 ajax.onerror = event =>{
+                    this.toggleOnloadModal(false);
                     reject(event);
+                }
+
+                this.startUploadTime = Date.now();
+                ajax.upload.onprogress = event =>{
+                    this.onUpload(event, file);
                 }
 
                 let formData = new FormData();
@@ -60,4 +77,29 @@ export default class DropBox {
         })
     }
 
+    onUpload(event, file){
+
+        let loaded = event.loaded;
+        let total = event.total;
+        
+        // defining the file progress
+        var progress = (loaded / total) * 100;
+        console.log( `${progress} %`)
+        this.progressModalElement.style.width = `${progress}%`;
+
+        // defining the file name
+        this.progressBarFileNameElement.innerHTML = file.name
+
+        // defining the time
+        let timeSpend = Date.now() - this.startUploadTime 
+        let timeLeft = ((100 - progress) * timeSpend) / progress;
+
+        this.progressBarTimeLeftElement.innerHTML = ConverterToAGoodLook(timeLeft)
+    }
+
+    //side methods
+
+    toggleOnloadModal(on = true){
+        this.snakeBarModalElement.style.display = (on)? 'block' : 'none';
+    }
 }
