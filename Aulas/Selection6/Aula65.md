@@ -10,7 +10,7 @@ O firebase tem uma série de planos, até uma certa quantidade de dados ele não
 
 ## Instalando o firebase
 
-Voce pode entrar em https://cloud.google.com/, ou clica [aquiSenhorNissoAquiEscritoEmCamelCase](https://cloud.google.com/) e clicar em ir para console, nisso você pode configurar um novo projeto. E na página principal, ir em develop -> database -> realTime Database
+Voce pode entrar em firebase.google.com, ou clica [aquiSenhorNissoAquiEscritoEmCamelCase](https://firebase.google.com/) e clicar em ir para console, nisso você pode configurar um novo projeto. E na página principal, ir em develop -> database -> realTime Database
 
 modo bloqueado = banco de dados privado  
 modo de teste = banco de dados público

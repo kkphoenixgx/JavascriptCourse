@@ -1,4 +1,6 @@
 import { ConverterToAGoodLook } from "../Utils/DateUtils.js"
+import { StartFirebase } from "./firebase/fireBaseDB.js"
+
 export default class DropBox {
     constructor(){
         // HTML Object
@@ -12,7 +14,8 @@ export default class DropBox {
         this.progressBarTimeLeftElement= this.snakeBarModalElement.querySelector('.timeleft')
 
         // initializing functions
-        this.initButtonEvents()
+        StartFirebase();
+        this.initButtonEvents();
     }
 
     // main methods
@@ -26,8 +29,16 @@ export default class DropBox {
 
             this.inputFilesElement.addEventListener( 'change', event =>{
 
+                this.uploadFiles(event.target.files).then(responses => {
+                    
+                    responses.forEach( response => {
+                        console.log(response);
+                    });
+
+                    this.toggleOnloadModal(false);
+                });
+
                 this.toggleOnloadModal();
-                this.uploadFiles(event.target.files)
                 this.inputFilesElement.value = '';
             } );
 
@@ -46,7 +57,6 @@ export default class DropBox {
                 ajax.open('POST', '/UPLOAD');
 
                 ajax.onload = event =>{
-                    this.toggleOnloadModal(false);
                     try {
                         resolve(JSON.parse(ajax.responseText));
                     } catch (error) { 
@@ -56,7 +66,6 @@ export default class DropBox {
                 } 
                 
                 ajax.onerror = event =>{
-                    this.toggleOnloadModal(false);
                     reject(event);
                 }
 
