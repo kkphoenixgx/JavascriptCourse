@@ -10,7 +10,7 @@ O firebase tem uma série de planos, até uma certa quantidade de dados ele não
 
 Para a criação de projeto, já no painel de [console do firebase](https://console.firebase.google.com/), adicionado a conta google, você deve fazer o que todo mortal já pesquisou no yt, clicar para inicializar com o database um projeto (Lado direito), colocar o nome, voltar para a tela inicial, clicar no icone **</>** da tela inicial para adicionar o projeto e se deparar com três opções, uma que ninguem sabe o que é. a ultima, se você sabe me pergunto o que você tá fazendo lendo meu repositório por diversão, a do meio para adicionar no script, o que se você for fazer, é o mais simples e o mais fácil, mas coloca como método e inicializa ele dentro do js. n faz isso com uma tar script PELO AMOR DE SANTO DEUX, se você não acredita, troca para .... sla, destino, n sei porquê tô escrevendo sobre isso. Agora se você é doente de npm igual a mim e quer fazer com essa ferramenta linda porque já tá usando, prepara a bunda e senta que lá vem história.
 
-![senta](https://thumbs.gfycat.com/BlandDelayedBedlingtonterrier-mobile.mp4)
+![senta](../img/senta-que.gif)
 
 ## Instalando o firebase
 
@@ -19,4 +19,24 @@ Voce pode entrar em firebase.google.com, ou clica [aquiSenhorNissoAquiEscritoEmC
 modo bloqueado = banco de dados privado  
 modo de teste = banco de dados público
 
-Mas vamos lá, por que pelo menos para descobrir como faz isso com o npm, eu demorei anos, se você entende ingles, tem um tutorial deep das interweb que eu encontrei [aqui](https://www.youtube.com/watch?v=qbxj_36UkWs), porém esse procedimento acontece somente quando já possuímos o **firebase-tools** e logamos nele, para baixar o firebase tools é só escrever **npm install -g firebase-tolls** e para baixar o firebase **npm install firebase** e loga com a sua conta do google usando **firebase login no console**, após isso podemos seguir a ordem do vídeo que fica tudo certo
+Mas vamos lá, por que pelo menos para descobrir como faz isso com o npm, eu demorei anos, se você entende ingles, tem um tutorial deep das interweb que eu encontrei [aqui](https://www.youtube.com/watch?v=qbxj_36UkWs), porém esse procedimento acontece somente quando já possuímos o **firebase-tools** e logamos nele, para baixar o firebase tools é só escrever **npm install -g firebase-tolls** e para baixar o firebase **npm install firebase** e loga com a sua conta do google usando **firebase login no console**, após isso podemos seguir a ordem do vídeo que fica tudo certo. Você faz um firebase init e seguir a inicialização base, isso vai gerar para você um .json com um objeto json. e você cola também o do cdn, porque o setup com npm dá muito erro 👍.
+
+ex:
+
+~~~js
+// Import the functions you need from the SDKs you need
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
+// TODO: Add SDKs for Firebase products that you want to use
+// https://firebase.google.com/docs/web/setup#available-libraries
+
+// Your web app's Firebase configuration
+// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+export function firebaseStart(){
+    ...
+
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+}
+~~~

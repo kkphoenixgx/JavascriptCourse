@@ -1,5 +1,5 @@
 import { ConverterToAGoodLook } from "../Utils/DateUtils.js"
-import { StartFirebase } from "./firebase/fireBaseDB.js"
+import { firebaseStart } from "./firebase/FirebaseStart.js"
 
 export default class DropBox {
     constructor(){
@@ -14,7 +14,7 @@ export default class DropBox {
         this.progressBarTimeLeftElement= this.snakeBarModalElement.querySelector('.timeleft')
 
         // initializing functions
-        StartFirebase();
+        firebaseStart();
         this.initButtonEvents();
     }
 
