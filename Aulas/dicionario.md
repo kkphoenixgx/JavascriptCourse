@@ -286,6 +286,15 @@ console.log(ExibirCadastro(Osvaldo.name, Osvaldo.code));
 
   * **x.getTime()** = retorna em o timeStamp em  milissegundos
 
+* ### Audio
+
+Defina algo como áudio e dê um play nele.
+
+~~~js
+var bMusic = new Audio('welcome1.mp3')
+bMusic.play()
+~~~
+
 * ### Promise()
 
 Uma promise pode encapsular operações assincronas, trazendo várias vantagens em seu uso.
