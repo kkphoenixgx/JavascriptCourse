@@ -23,11 +23,12 @@ export default class DropBox {
     initButtonEvents(){ 
         this.btnSendFilesElement.addEventListener( 'click', event =>{
 
-            // This Input is with display : none
-            // So we click on that without having it on the screen 
+            // This Input is with display : none in html
             this.inputFilesElement.click();
 
             this.inputFilesElement.addEventListener( 'change', event =>{
+
+                this.btnSendFilesElement.disabled = true;
 
                 this.uploadFiles(event.target.files).then(responses => {
                     
@@ -35,7 +36,10 @@ export default class DropBox {
                         console.log(response);
                     });
 
-                    this.toggleOnloadModal(false);
+                    this.UploadFinished();
+
+                }).catch(error => {
+                    console.error(error)
                 });
 
                 this.toggleOnloadModal();
@@ -48,42 +52,42 @@ export default class DropBox {
     uploadFiles(files){
 
         let promises = [];
+
         [...files].forEach(file => {
-            
-            promises.push(new Promise( (resolve, reject) =>{
-
-                let ajax  = new XMLHttpRequest();
-
-                ajax.open('POST', '/UPLOAD');
-
-                ajax.onload = event =>{
-                    try {
-                        resolve(JSON.parse(ajax.responseText));
-                    } catch (error) { 
-                        reject(error)
-                    }
-
-                } 
-                
-                ajax.onerror = event =>{
-                    reject(event);
-                }
-
-                this.startUploadTime = Date.now();
-                ajax.upload.onprogress = event =>{
-                    this.onUpload(event, file);
-                }
-
-                let formData = new FormData();
-                formData.append('input-file', file);
-
-                ajax.send(formData)
-
-            }));
-
-            return Promise.all(promises)
-
+          promises.push(new Promise((resolve, reject) => {
+            let ajax = new XMLHttpRequest();
+    
+            ajax.open('POST', '/upload')
+    
+            ajax.onload = event => {
+    
+              try {
+                resolve(JSON.parse(ajax.responseText))
+              } catch (e) {
+                reject(e)
+              }
+            }
+    
+            ajax.onerror = event => {
+              reject(event)
+            }
+    
+            ajax.upload.onprogress = event => {
+              this.onUpload(event, file)
+            }
+    
+            let formData = new FormData()
+    
+            formData.append('input-file', file)
+    
+            this.startUploadTime = Date.now();
+    
+            ajax.send(formData)
+    
+          }))
         })
+    
+        return Promise.all(promises)
     }
 
     onUpload(event, file){
@@ -93,7 +97,6 @@ export default class DropBox {
         
         // defining the file progress
         var progress = (loaded / total) * 100;
-        console.log( `${progress} %`)
         this.progressModalElement.style.width = `${progress}%`;
 
         // defining the file name
@@ -105,6 +108,7 @@ export default class DropBox {
 
         this.progressBarTimeLeftElement.innerHTML = ConverterToAGoodLook(timeLeft)
     }
+
 
     //side methods
 
@@ -284,5 +288,10 @@ export default class DropBox {
                     ${this.getFileIcon(file)}
                     <div class="name text-center">Meus Documentos</div>
                 </li>`
+    }
+    UploadFinished(){
+        this.toggleOnloadModal();
+        this.inputFilesElement.value = '';
+        this.btnSendFilesElement.disabled = false;
     }
 }
