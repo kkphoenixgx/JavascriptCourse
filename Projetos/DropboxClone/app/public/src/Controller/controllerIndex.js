@@ -34,6 +34,7 @@ export default class DropBox {
                     
                     responses.forEach( response => {
                         console.log(response);
+                        this.getFirebaseRef().push().set(response.files['input-file']);
                     });
 
                     this.UploadFinished();
@@ -109,6 +110,9 @@ export default class DropBox {
         this.progressBarTimeLeftElement.innerHTML = ConverterToAGoodLook(timeLeft)
     }
 
+    getFirebaseRef(){
+        return firebaseStart.database().ref('files');
+    }
 
     //side methods
 
