@@ -1,5 +1,5 @@
 import { ConverterToAGoodLook } from "../Utils/DateUtils.js"
-import { firebaseStart } from "./firebase/FirebaseStart.js"
+import { addToFirestoreDB } from "./firebase/FirebaseStart.js"
 
 export default class DropBox {
     constructor(){
@@ -14,7 +14,6 @@ export default class DropBox {
         this.progressBarTimeLeftElement= this.snakeBarModalElement.querySelector('.timeleft')
 
         // initializing functions
-        firebaseStart();
         this.initButtonEvents();
     }
 
@@ -30,17 +29,19 @@ export default class DropBox {
 
                 this.btnSendFilesElement.disabled = true;
 
-                this.uploadFiles(event.target.files).then(responses => {
-                    
+                this.uploadFiles(event.target.files)
+                .then(responses => {    
                     responses.forEach( response => {
-                        console.log(response);
-                        this.getFirebaseRef().push().set(response.files['input-file']);
+                        addToFirestoreDB(response.files['input-file'])
+                        .then(console.log('Added to Firestore'))
+                        .catch(error => { console.error(error); });
                     });
 
                     this.UploadFinished();
-
-                }).catch(error => {
-                    console.error(error)
+                
+                }).catch(error => { 
+                    this.UploadFinished()
+                    console.error(error);
                 });
 
                 this.toggleOnloadModal();
@@ -108,10 +109,6 @@ export default class DropBox {
         let timeLeft = ((100 - progress) * timeSpend) / progress;
 
         this.progressBarTimeLeftElement.innerHTML = ConverterToAGoodLook(timeLeft)
-    }
-
-    getFirebaseRef(){
-        return firebaseStart.database().ref('files');
     }
 
     //side methods

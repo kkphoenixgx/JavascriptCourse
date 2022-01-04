@@ -1,6 +1,6 @@
 {
-  "rules": {
-    ".read": "now < 1642474800000",
-    ".write": "now < 1642474800000"
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
   }
 }

@@ -1,8 +1,7 @@
-# Gravando dados no firebase
+# Guardando dados do firebase database
 
-Mod 97 -- **19/12/21**
+Mod 98 **26/12/21** made in **03/12/21**
 
-Para gravar dados no firebase sempre precisaremos de uma referência, onde fazer algo, em rotas e ele guarda uma coleção de jsons, lembrando:
-
-array = conjunto de variáveis e outros  
-coleção = conjunto de objetos
+Esclarecimentos pelo atraso:  
+Tive alguns problemas com bugs no projeto e fui passar o ano novo longe de casa. Então só pude refatorar agora
+Mudou a forma de usar o database, logo tenho que mudar todos os arquivos.
