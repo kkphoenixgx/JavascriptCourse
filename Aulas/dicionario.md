@@ -557,7 +557,7 @@ exemplos :
   delete jsonName.variableName;
   ~~~
 
-* ### Metodos utilizaveis em JSONs
+* ### Métodos utilizáveis em JSONs
   
   * **JSON.stringify(x, ...)** = Isso transforma um json em um json, só que todo em texto, esse é o principal motivo de um json ser tão incrível, isso torna os dados muito moldaveis.
   
