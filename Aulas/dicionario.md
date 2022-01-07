@@ -297,7 +297,7 @@ bMusic.play()
 
 * ### Promise()
 
-Uma promise pode encapsular operações assincronas, trazendo várias vantagens em seu uso.
+Uma promise pode encapsular operações assíncronas, trazendo várias vantagens em seu uso.
 
 Criando uma promise:
 
