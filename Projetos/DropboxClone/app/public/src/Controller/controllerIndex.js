@@ -1,12 +1,13 @@
 import { ConverterToAGoodLook } from "../Utils/DateUtils.js"
-import { addToFirestoreDB } from "./firebase/FirebaseStart.js"
+import { FilesRef ,addToFirestoreDB, ReadFilesFromFirestoreDB } from "./firebase/FirebaseStart.js"
 
 export default class DropBox {
     constructor(){
         // HTML Object
-        this.btnSendFilesElement = document.querySelector('#btn-send-file')
-        this.inputFilesElement = document.querySelector('#files')
-        this.snakeBarModalElement = document.querySelector('#react-snackbar-root')
+        this.btnSendFilesElement = document.querySelector('#btn-send-file');
+        this.inputFilesElement = document.querySelector('#files');
+        this.snakeBarModalElement = document.querySelector('#react-snackbar-root');
+        this.filesListElement = document.querySelector('#list-of-files-and-directories');
 
         //ModalBar HTML objects
         this.progressModalElement =  this.snakeBarModalElement.querySelector('.mc-progress-bar-fg')
@@ -15,6 +16,7 @@ export default class DropBox {
 
         // initializing functions
         this.initButtonEvents();
+        this.loadFiles(FilesRef)
     }
 
     // main methods
@@ -30,9 +32,9 @@ export default class DropBox {
                 this.btnSendFilesElement.disabled = true;
 
                 this.uploadFiles(event.target.files)
-                .then(responses => {    
+                .then(responses => {
                     responses.forEach( response => {
-                        addToFirestoreDB(response.files['input-file'])
+                        addToFirestoreDB(FilesRef, response.files['input-file'])
                         .then(console.log('Added to Firestore'))
                         .catch(error => { console.error(error); });
                     });
@@ -50,7 +52,6 @@ export default class DropBox {
 
         });
     }
-
     uploadFiles(files){
 
         let promises = [];
@@ -91,7 +92,6 @@ export default class DropBox {
     
         return Promise.all(promises)
     }
-
     onUpload(event, file){
 
         let loaded = event.loaded;
@@ -110,15 +110,63 @@ export default class DropBox {
 
         this.progressBarTimeLeftElement.innerHTML = ConverterToAGoodLook(timeLeft)
     }
+    initLiEvents(li){
+
+        li.addEventListener('click', event=>{
+
+            if(event.shiftKey){
+                let firstLi = document.querySelector('.selected');
+                
+                if(firstLi){
+                    let indexStart;
+                    let indexEnd;
+                    
+                    li.parentElement.childNodes.forEach((element, index) => {
+                        if(firstLi === element) indexStart = index;
+                        if(li === element) indexEnd = index
+                    });
+                    
+                    let index = [indexStart, indexEnd].sort();
+                
+                    li.parentElement.childNodes.forEach((element, i) => {
+                        if( i >= index[0] && i <= index[1]){
+                            element.classList.add('selected');
+                        }   
+                    });
+
+                    return true
+                }
+            }
+            if(!event.ctrlKey){
+                this.filesListElement.querySelectorAll('li.selected').forEach(element => {
+                    element.classList.remove('selected');
+                });
+            }
+
+            li.classList.toggle('selected');
+        })
+    }
+    //--DB methods--
+
+    loadFiles(reference){
+        this.filesListElement.innerHTML = ``;
+        
+        ReadFilesFromFirestoreDB(reference).then( response => {
+
+            response.forEach(file => {
+                this.filesListElement.appendChild(this.getFileIcon(file.data, file.id));
+            })
+        })
+
+    }
 
     //side methods
 
     toggleOnloadModal(on = true){
         this.snakeBarModalElement.style.display = (on)? 'block' : 'none';
     }
-    getFileIcon(file){
-        switch(file.type){
-
+    setFileIcon(file){
+        switch(file.mimetype){
             case 'folder':
                 return `
                 <svg width="160" height="160" viewBox="0 0 160 160" class="mc-icon-template-content tile__preview tile__preview--icon">
@@ -284,11 +332,19 @@ export default class DropBox {
 
         }
     }
-    setFileIcon(file){
-        return `<li>
-                    ${this.getFileIcon(file)}
-                    <div class="name text-center">Meus Documentos</div>
-                </li>`
+    getFileIcon(file, id){
+        let li = document.createElement('li');
+        li.dataset.id = id;
+
+        li.innerHTML = `
+            ${this.setFileIcon(file)}
+            <div class="name text-center">${file.originalFilename}</div>
+        `
+        li.style = 'text-align: center;'
+
+        this.initLiEvents(li);
+
+        return li;
     }
     UploadFinished(){
         this.toggleOnloadModal();

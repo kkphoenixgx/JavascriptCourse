@@ -488,9 +488,9 @@ static request(method, url, params = {}) {
 }
 ~~~
 
-## Métodos para elemento html
+## Elementos html
 
-* **x.preventDefault()** = Que basicamente fala para parar tudo o que esse cara disparou, pode ser usado no event como parametro
+### Métodos globais
 
 * **querySelector(cssSelector)**: = Seleciona um objeto html, que pode ser por exemplo colocado em uma variável  
 exemplos :  
@@ -504,10 +504,21 @@ exemplos :
 
     var elements = querySelectorAll(seletorCss1, seletorCss2)
 
+### Métodos de objeto
+
+* **object.preventDefault()** = Que basicamente fala para parar tudo o que esse cara disparou, pode ser usado no event como parâmetro
+
 * **object.style.x** = Com o método style, podemos definir o style x do objeto, exemplo:
   > **gameBoard.style.border = 'black 2px solid'**;
 
 * **object.click()** = Simplesmente faz um clique em um objeto e um macete desse método é que ele pode frazer um click em objetos que não tem padding.
+
+### Elementos de objeto
+
+* **object.classList** = permite acessar as classes e com ela vêm métodos para adicionar, retirar classes da forma que quiser.
+    .add('x') = adiciona a classe x.
+    .remove('x') = remove a classe x.
+    .toggle('x') se tiver vai tirar e se não tiver, vai colocar.
 
 ## JSON
 

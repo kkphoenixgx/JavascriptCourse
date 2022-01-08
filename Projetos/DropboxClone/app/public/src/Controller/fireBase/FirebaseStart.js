@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
-import { getFirestore, collection, addDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: 'AIzaSyCCPGp5FEx_aaRP52Bgfb4FGAIbb9mrcNw',
@@ -21,8 +21,37 @@ const analytics = getAnalytics(app);
 // files collections:
 export const FilesRef = collection(db, 'files');
 
+//Default DataBase
+const currentDB = FilesRef;
+
 // ----functions------
 
-export function addToFirestoreDB(fileJson){
-    addDoc(FilesRef, fileJson);
+export function addToFirestoreDB(fileJson, Reference){
+    addDoc(Reference, fileJson);
+}
+
+export function ReadFilesFromFirestoreDB(Reference = currentDB){
+    
+    var ReadFiles = new Promise((resolve, reject) =>{
+        
+        getDocs(Reference)
+        .then( snapshot =>{
+            var jsonItens = []
+
+            snapshot.docs.forEach(item => {
+                let jsonItem = {
+                    'id': item.id,
+                    'data': item.data()
+                }
+                
+                jsonItens.push(jsonItem);
+            })
+            
+            resolve(jsonItens);
+        })
+        .catch( error => { reject(error )} );
+
+    })
+
+    return ReadFiles
 }
