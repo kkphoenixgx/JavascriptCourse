@@ -9,6 +9,10 @@ export default class DropBox {
         this.snakeBarModalElement = document.querySelector('#react-snackbar-root');
         this.filesListElement = document.querySelector('#list-of-files-and-directories');
 
+        this.btnNewFolderElement = document.querySelector("#btn-new-folder");
+        this.btnRenameElement = document.querySelector("#btn-rename");
+        this.btnDeleteElement = document.querySelector("#btn-delete");
+
         //ModalBar HTML objects
         this.progressModalElement =  this.snakeBarModalElement.querySelector('.mc-progress-bar-fg')
         this.progressBarFileNameElement = this.snakeBarModalElement.querySelector('.filename')
@@ -24,36 +28,56 @@ export default class DropBox {
 
     // main methods
 
-    initButtonEvents(){ 
+    initButtonEvents(){
+
+        this.filesListElement.addEventListener('onSelected', event =>{
+
+            switch (this.getSelection().length){
+                case 0:
+                    this.btnDeleteElement.style.display = "none";
+                    this.btnRenameElement.style.display = "none";
+                break;
+                case 1:
+                    this.btnDeleteElement.style.display = "block";    
+                    this.btnRenameElement.style.display = "block";
+                break;
+                default:
+                    this.btnDeleteElement.style.display = "block";    
+                    this.btnRenameElement.style.display = "none";
+                break;
+            }
+
+        });
+
         this.btnSendFilesElement.addEventListener( 'click', event =>{
 
             // This Input is with display : none in html
             this.inputFilesElement.click();
 
-            this.inputFilesElement.addEventListener( 'change', event =>{
-
-                this.btnSendFilesElement.disabled = true;
-
-                this.uploadFiles(event.target.files)
-                .then(responses => {
-                    responses.forEach( response => {
-                        addToFirestoreDB(FilesRef, response.files['input-file'])
-                        .then(console.log('Added to Firestore'))
-                        .catch(error => { console.error(error); });
-                    });
-
-                    this.UploadFinished();
-                
-                }).catch(error => { 
-                    this.UploadFinished()
-                    console.error(error);
-                });
-
-                this.toggleOnloadModal();
-                this.inputFilesElement.value = '';
-            } );
-
         });
+
+        this.inputFilesElement.addEventListener( 'change', event =>{
+    
+            this.btnSendFilesElement.disabled = true;
+    
+            this.uploadFiles(event.target.files)
+            .then(responses => {
+                responses.forEach( response => {
+                    addToFirestoreDB(FilesRef, response.files['input-file'])
+                    .then(console.log('Added to Firestore'))
+                    .catch(error => { console.error(error); });
+                });
+    
+                this.UploadFinished();
+            
+            }).catch(error => { 
+                this.UploadFinished()
+                console.error(error);
+            });
+    
+            this.toggleOnloadModal();
+            this.inputFilesElement.value = '';
+        } );
     }
     uploadFiles(files){
 
@@ -116,7 +140,6 @@ export default class DropBox {
     initLiEvents(li){
 
         li.addEventListener('click', event=>{
-            this.filesListElement.dispatchEvent(this.onSelected);
 
             if(event.shiftKey){
                 let firstLi = document.querySelector('.selected');
@@ -138,6 +161,7 @@ export default class DropBox {
                         }   
                     });
 
+                    this.filesListElement.dispatchEvent(this.onSelected);
                     return true
                 }
             }
@@ -148,6 +172,7 @@ export default class DropBox {
             }
 
             li.classList.toggle('selected');
+            this.filesListElement.dispatchEvent(this.onSelected);
         })
     }
     //--DB methods--
@@ -354,5 +379,8 @@ export default class DropBox {
         this.toggleOnloadModal();
         this.inputFilesElement.value = '';
         this.btnSendFilesElement.disabled = false;
+    }
+    getSelection(){
+        return this.inputFilesElement.querySelectorAll('.selected');
     }
 }
