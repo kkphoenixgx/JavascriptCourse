@@ -14,6 +14,9 @@ export default class DropBox {
         this.progressBarFileNameElement = this.snakeBarModalElement.querySelector('.filename')
         this.progressBarTimeLeftElement= this.snakeBarModalElement.querySelector('.timeleft')
 
+        // Created events
+        this.onSelected = new Event('onSelected');
+
         // initializing functions
         this.initButtonEvents();
         this.loadFiles(FilesRef)
@@ -113,6 +116,7 @@ export default class DropBox {
     initLiEvents(li){
 
         li.addEventListener('click', event=>{
+            this.filesListElement.dispatchEvent(this.onSelected);
 
             if(event.shiftKey){
                 let firstLi = document.querySelector('.selected');
