@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
-import { getFirestore, collection, addDoc, getDocs } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+import { getFirestore, collection, doc, addDoc, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: 'AIzaSyCCPGp5FEx_aaRP52Bgfb4FGAIbb9mrcNw',
@@ -15,11 +15,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
+const DB = getFirestore(app);
 const analytics = getAnalytics(app);
 
 // files collections:
-export const FilesRef = collection(db, 'files');
+export const FilesRef = collection(DB, 'files');
 
 //Default DataBase
 const currentDB = FilesRef;
@@ -27,7 +27,14 @@ const currentDB = FilesRef;
 // ----functions------
 
 export function addToFirestoreDB(fileJson, Reference){
-    addDoc(Reference, fileJson);
+    
+    let addDocToFirestore = new Promise((resolve, reject) => {
+
+        try {  resolve(addDoc(Reference, fileJson));  }
+        catch (err) { reject(err);}
+    })
+
+    return addDocToFirestore
 }
 
 export function ReadFilesFromFirestoreDB(Reference = currentDB){
@@ -54,4 +61,17 @@ export function ReadFilesFromFirestoreDB(Reference = currentDB){
     })
 
     return ReadFiles
+}
+
+export function EditAFileItemFromDB(reference, id, itemChanged, db = DB){
+
+    let FileReference = doc(db, reference, id);
+
+    let updateFile = new Promise((resolve, reject) => {
+
+        try { resolve(updateDoc(FileReference, itemChanged));  }
+        catch (err) {  reject(err); }
+
+    })
+    return updateFile
 }

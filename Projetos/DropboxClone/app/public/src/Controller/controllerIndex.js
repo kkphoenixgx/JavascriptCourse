@@ -1,5 +1,5 @@
 import { ConverterToAGoodLook } from "../Utils/DateUtils.js"
-import { FilesRef ,addToFirestoreDB, ReadFilesFromFirestoreDB } from "./firebase/FirebaseStart.js"
+import { FilesRef ,addToFirestoreDB, ReadFilesFromFirestoreDB, EditAFileItemFromDB } from "./firebase/FirebaseStart.js"
 
 export default class DropBox {
     constructor(){
@@ -31,7 +31,7 @@ export default class DropBox {
     initButtonEvents(){
 
         this.filesListElement.addEventListener('onSelected', event =>{
-
+            
             switch (this.getSelection().length){
                 case 0:
                     this.btnDeleteElement.style.display = "none";
@@ -56,28 +56,56 @@ export default class DropBox {
 
         });
 
+        // adding to db
         this.inputFilesElement.addEventListener( 'change', event =>{
     
             this.btnSendFilesElement.disabled = true;
-    
+        
             this.uploadFiles(event.target.files)
             .then(responses => {
+                if(!responses) return
                 responses.forEach( response => {
-                    addToFirestoreDB(FilesRef, response.files['input-file'])
+                    // let file = JSON.stringify(response.files['input-file'])
+                    let file = response.files['input-file']
+                    addToFirestoreDB(file, FilesRef)
                     .then(console.log('Added to Firestore'))
-                    .catch(error => { console.error(error); });
+                    .catch(error => { 
+                        this.UploadFinished();
+                        console.error(error);
+                    });
                 });
     
                 this.UploadFinished();
             
-            }).catch(error => { 
-                this.UploadFinished()
-                console.error(error);
+            }).catch(err => { 
+                this.UploadFinished();
+                console.error(err);
             });
     
             this.toggleOnloadModal();
-            this.inputFilesElement.value = '';
         } );
+        // renaming file in db  
+        this.btnRenameElement.addEventListener("click", event => {
+            let li = this.getSelection()[0]
+            let file = JSON.parse(li.dataset.file);
+            console.log(li.dataset.id);
+            let fileName = prompt('Renomeie o arquivo', file.name);
+
+            if(!fileName) return 
+
+            EditAFileItemFromDB('files', li.dataset.id, { name: fileName })
+              .then( function(){
+                alert('Mudado com sucesso');
+                this.loadFiles(FilesRef);   
+              })
+              .catch(err => {
+                console.error(err);
+                this.loadFiles(FilesRef);
+              });
+            
+        });
+        //deleting from db
+
     }
     uploadFiles(files){
 
@@ -92,14 +120,19 @@ export default class DropBox {
             ajax.onload = event => {
     
               try {
-                resolve(JSON.parse(ajax.responseText))
+                let fileJson = JSON.parse(ajax.responseText);
+
+                fileJson.files['input-file'].name = fileJson.files['input-file'].originalFilename;
+
+                resolve(fileJson)
               } catch (e) {
                 reject(e)
               }
             }
     
             ajax.onerror = event => {
-              reject(event)
+                console.log(event)
+                reject(event)
             }
     
             ajax.upload.onprogress = event => {
@@ -192,7 +225,10 @@ export default class DropBox {
     //side methods
 
     toggleOnloadModal(on = true){
-        this.snakeBarModalElement.style.display = (on)? 'block' : 'none';
+
+        if(on === true) this.snakeBarModalElement.style.display = 'block';
+        if(on === false) this.snakeBarModalElement.style.display = 'none';
+    
     }
     setFileIcon(file){
         switch(file.mimetype){
@@ -364,10 +400,11 @@ export default class DropBox {
     getFileIcon(file, id){
         let li = document.createElement('li');
         li.dataset.id = id;
+        li.dataset.file = JSON.stringify(file);
 
         li.innerHTML = `
             ${this.setFileIcon(file)}
-            <div class="name text-center">${file.originalFilename}</div>
+            <div class="name text-center">${file.name}</div>
         `
         li.style = 'text-align: center;'
 
@@ -376,11 +413,12 @@ export default class DropBox {
         return li;
     }
     UploadFinished(){
-        this.toggleOnloadModal();
+        this.toggleOnloadModal(false);
         this.inputFilesElement.value = '';
         this.btnSendFilesElement.disabled = false;
+        this.loadFiles(FilesRef)
     }
     getSelection(){
-        return this.inputFilesElement.querySelectorAll('.selected');
+        return this.filesListElement.querySelectorAll('.selected');
     }
 }
