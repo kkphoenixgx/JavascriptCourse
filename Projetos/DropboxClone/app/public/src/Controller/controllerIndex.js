@@ -1,5 +1,6 @@
 import { ConverterToAGoodLook } from "../Utils/DateUtils.js"
-import { FilesRef ,addToFirestoreDB, ReadFilesFromFirestoreDB, EditAFileItemFromDB } from "./firebase/FirebaseStart.js"
+import { CreateAjax } from "../Utils/AjaxUtil.js";
+import { FilesRef ,addToFirestoreDB, ReadFilesFromFirestoreDB, EditAFileItemFromDB, DeleteAFileItemFromDB } from "./firebase/FirebaseStart.js"
 
 export default class DropBox {
     constructor(){
@@ -30,7 +31,7 @@ export default class DropBox {
 
     initButtonEvents(){
 
-        this.filesListElement.addEventListener('onSelected', event =>{
+        this.filesListElement.addEventListener('onSelected', ()=>{
             
             switch (this.getSelection().length){
                 case 0:
@@ -49,7 +50,7 @@ export default class DropBox {
 
         });
 
-        this.btnSendFilesElement.addEventListener( 'click', event =>{
+        this.btnSendFilesElement.addEventListener( 'click', ()=>{
 
             // This Input is with display : none in html
             this.inputFilesElement.click();
@@ -85,73 +86,98 @@ export default class DropBox {
             this.toggleOnloadModal();
         } );
         // renaming file in db  
-        this.btnRenameElement.addEventListener("click", event => {
+        this.btnRenameElement.addEventListener("click", ()=>{
             let li = this.getSelection()[0]
             let file = JSON.parse(li.dataset.file);
-            console.log(li.dataset.id);
             let fileName = prompt('Renomeie o arquivo', file.name);
 
             if(!fileName) return 
 
             EditAFileItemFromDB('files', li.dataset.id, { name: fileName })
-              .then( function(){
+              .then( ()=>{
                 alert('Mudado com sucesso');
-                this.loadFiles(FilesRef);   
+                this.loadFiles(FilesRef);
               })
               .catch(err => {
                 console.error(err);
-                this.loadFiles(FilesRef);
               });
             
         });
         //deleting from db
+        this.btnDeleteElement.addEventListener("click", ()=>{
+            if(confirm('Deseja mesmo deletar?') === false) return
 
+            this.removeTask().then( ()=>{
+
+                this.getSelection().forEach(liSelected=>{
+
+                    DeleteAFileItemFromDB('files', liSelected.dataset.id)
+                    .then(()=>{
+                        console.log('removed from db');
+                        this.loadFiles(FilesRef);
+                    })
+                    .catch( error => { console.error(error); } );
+                });
+            })
+            .catch(err => { console.error})
+        })
     }
+
     uploadFiles(files){
 
         let promises = [];
 
         [...files].forEach(file => {
           promises.push(new Promise((resolve, reject) => {
-            let ajax = new XMLHttpRequest();
-    
-            ajax.open('POST', '/upload')
-    
-            ajax.onload = event => {
-    
-              try {
-                let fileJson = JSON.parse(ajax.responseText);
-
-                fileJson.files['input-file'].name = fileJson.files['input-file'].originalFilename;
-
-                resolve(fileJson)
-              } catch (e) {
-                reject(e)
-              }
-            }
-    
-            ajax.onerror = event => {
-                console.log(event)
-                reject(event)
-            }
-    
-            ajax.upload.onprogress = event => {
-              this.onUpload(event, file)
-            }
-    
+            
             let formData = new FormData()
-    
             formData.append('input-file', file)
-    
-            this.startUploadTime = Date.now();
-    
-            ajax.send(formData)
-    
+
+            CreateAjax('/upload', 'POST', formData,
+                // when the load is in progress, execute it:
+                ()=> {
+                    this.onUpload(event, file)
+                },
+                // when the load start, execute it: 
+                ()=>{
+                    this.startUploadTime = Date.now();
+                }
+            )
+              .then( fileJson => {
+                fileJson.files['input-file'].name = fileJson.files['input-file'].originalFilename;
+                resolve(fileJson)
+              })
+              .catch(  err => { reject(err); }  );
+
           }))
         })
     
         return Promise.all(promises)
     }
+
+    removeTask(){
+
+        var promises = [];
+
+        this.getSelection().forEach(liSelected => {
+
+            let file = JSON.parse(liSelected.dataset.file);
+            var formData = new FormData();
+            formData.append('path', file.filepath);
+            formData.append('id', file.id);
+
+            console.log(formData);
+
+            CreateAjax('/file', 'DELETE', formData).then( promise => {
+                promises.push(promise)
+            }).catch( err => { console.error(err)});
+
+            return Promise.all(promises)
+        })
+
+        return Promise.all(promises)
+    }
+
     onUpload(event, file){
 
         let loaded = event.loaded;

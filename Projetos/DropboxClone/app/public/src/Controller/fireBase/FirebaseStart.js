@@ -1,6 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-app.js";
 import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-analytics.js";
-import { getFirestore, collection, doc, addDoc, getDocs, updateDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
+import { getFirestore, collection, doc, addDoc, getDocs, updateDoc, deleteDoc } from "https://www.gstatic.com/firebasejs/9.6.1/firebase-firestore.js";
 
 const firebaseConfig = {
     apiKey: 'AIzaSyCCPGp5FEx_aaRP52Bgfb4FGAIbb9mrcNw',
@@ -74,4 +74,16 @@ export function EditAFileItemFromDB(reference, id, itemChanged, db = DB){
 
     })
     return updateFile
+}
+
+export function DeleteAFileItemFromDB(reference, id, db = DB){
+
+    let FileReference = doc(db, reference, id);
+
+    let deleteDocFromFirestore = new Promise((resolve, reject)=>{
+        try { resolve(  deleteDoc( FileReference )  )}
+        catch (err){ reject(err); }
+    })
+
+    return deleteDocFromFirestore
 }

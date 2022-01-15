@@ -42,7 +42,7 @@
 * **for**
 
 ~~~javascript
-for(variavel, até quando, o que fazer toda vez){
+for(variável, até quando, o que fazer toda vez){
     // bloco de código do que fazer para cada x.
 }
 ~~~
@@ -58,7 +58,7 @@ array.forEach( function(value, index){
 * **for in**
 
 ~~~javascript
-for(variavel in objeto){
+for(variável in objeto){
     //bloco de código para cada atributo ou function do objeto
 }
 ~~~
@@ -66,7 +66,7 @@ for(variavel in objeto){
 * **for of**
 
 ~~~javascript
-for(variavel of x){
+for(variável of x){
     //bloco de código para cada valor de x
 }
 ~~~
@@ -108,20 +108,20 @@ switch(cor){
 
 ~~~js
 //uma function anonima não possui nome e pode ser criada como um call back de uma outra função
-Funcionário.calcSalary (IdDoFuncionario, function(HorasDeTrabalho, salario){
+Funcionário.calcSalary (IdDoFuncionário, function(HorasDeTrabalho, salario){
     const taxa = 1.6
     return `O valor é ${(HorasDeTrabalho * salario) + taxa}`
 })
 /* 
-Uma função assim é dificil explicar fora de contexto, mas seu conceito é 
+Uma função assim é difícil explicar fora de contexto, mas seu conceito é 
 extremamente simples, ela é uma função que não precisa ser declarada no
 escopo0 global, que só vai gastar processamento na hora de usar ela 
 
 Explicando,ela basicamente ela calcula para um funcionário de uma empresa o 
 valor  do seu salário e depois envia esse valor para o banco de dados na 
-classe, com o IdDoFuncionario, então esse método userSalary para não fazer 
+classe, com o IdDoFuncionário, então esse método userSalary para não fazer 
 outro método, pode pedir essas variáveis para uma função anonima para não 
-chamar outro  método para calcular o salário e evitar refatoração em multiplos 
+chamar outro  método para calcular o salário e evitar refatoração em múltiplos 
 lugares da classe. 
 */
 ~~~
@@ -187,14 +187,14 @@ Entre parenteses está o código do evento para o **event.keycode** e entre '' e
 
     Session storage é basicamente uma forma de gravar dados da sessão do usuário, esses dados serão perdidos assim que ele fechar a aba, mesmo que ele abra a mesma aba novamente, porém caso ocorra um f5 a informação continua ali.  
     Lembrando que nem o SessionStorage nem o LocalStorage conseguem guardar todo um objeto, caso seja feito algo do tipo vai aparecer a string do object, aquela mensagem de object: object...  
-    Então o necessario para guardar uma informação dessa forma é fazendo um array e percorrendo toda essa seção de atributos de um JSON.  
+    Então o necessário para guardar uma informação dessa forma é fazendo um array e percorrendo toda essa seção de atributos de um JSON.  
     Para fazer um insert de um sessionStorage é simplesmente fazendo um **sessionStorage.setItem("x","y")** sendo x o nome do valor e y o valor.
 
     ~~~js
     sessionStorage.setItem("name","value")
     ~~~
 
-    Para acessar as informações de um session ou local Storage, você ao inves de set, sessionStorage.getItem("x");
+    Para acessar as informações de um session ou local Storage, você ao invés de set, sessionStorage.getItem("x");
 
     ~~~javascript
     sessionStorage.getItem("name");
@@ -202,7 +202,7 @@ Entre parenteses está o código do evento para o **event.keycode** e entre '' e
 
 * #### (window.)eval(x)
 
-    O eval basicamente calcula uma expressão numerica em string
+    O eval basicamente calcula uma expressão numérica em string
 
     ~~~js
     eval('2+2');
@@ -325,7 +325,7 @@ then(value => {
     promise.then(value => value).then()
     Então fica do jeito escrito
 
-    para deixar o código mais legivel 
+    para deixar o código mais legível 
     
     (☞ﾟヮﾟ)☞ clean code ☜(ﾟヮﾟ☜)
 */
@@ -390,7 +390,7 @@ promise
 
   * **Math.round()** = arredonda o número para o mais perto de um inteiro
 
-  * **Random Floor Round** =  Você pode definir um valor x randomico de -100 a 100 sem o 0:
+  * **Random Floor Round** =  Você pode definir um valor x randômico de -100 a 100 sem o 0:
 
     ~~~js
     //gera para mim um número de 1 a 100
@@ -419,9 +419,9 @@ Lembrando que existem dois tipos de formas de tratar esses métodos do ajax, uma
 
 * ### fetch
 
-A fetch API, diferentemente do ajax, suporta json, então nela, você pode usar o json direto sem problemas. Ela possui melhor suporte as promises do js, que para uma api, é muito importante para conseguir tratar possiveis erros, imprevistos e outros.
+A fetch API, diferentemente do ajax, suporta json, então nela, você pode usar o json direto sem problemas. Ela possui melhor suporte as promises do js, que para uma api, é muito importante para conseguir tratar possíveis erros, imprevistos e outros.
 
-Para chamar os métodos via fetch é bem simples, basta usar fetch(metodo) e isso retorna para você uma promessa, que como qualquer outra, pode ser pega usando then. e com isso podemos tratar retornando via resolve ou reject o resultado da request
+Para chamar os métodos via fetch é bem simples, basta usar fetch(método) e isso retorna para você uma promessa, que como qualquer outra, pode ser pega usando then. e com isso podemos tratar retornando via resolve ou reject o resultado da request
 
 Exemplo de um método que usa fetch:
 
@@ -511,7 +511,7 @@ exemplos :
 * **object.style.x** = Com o método style, podemos definir o style x do objeto, exemplo:
   > **gameBoard.style.border = 'black 2px solid'**;
 
-* **object.click()** = Simplesmente faz um clique em um objeto e um macete desse método é que ele pode frazer um click em objetos que não tem padding.
+* **object.click()** = Simplesmente faz um clique em um objeto e um macete desse método é que ele pode Frazer um click em objetos que não tem padding.
 
 ### Elementos de objeto
 
@@ -570,6 +570,6 @@ exemplos :
 
 * ### Métodos utilizáveis em JSONs
   
-  * **JSON.stringify(x, ...)** = Isso transforma um json em um json, só que todo em texto, esse é o principal motivo de um json ser tão incrível, isso torna os dados muito moldaveis.
+  * **JSON.stringify(x, ...)** = Isso transforma um json em um json, só que todo em texto, esse é o principal motivo de um json ser tão incrível, isso torna os dados muito moldáveis.
   
   * **JSON.parse(x)** = O JSON.parse transforma um objeto stringficado em um objeto json novamente
