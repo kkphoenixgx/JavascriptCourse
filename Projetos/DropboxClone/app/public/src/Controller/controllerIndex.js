@@ -24,7 +24,9 @@ export default class DropBox {
 
         // initializing functions
         this.initButtonEvents();
-        this.loadFiles(FilesRef)
+        this.loadFiles(FilesRef);
+
+        this.currentPath = ['Dropbox'];
     }
 
     // main methods
@@ -121,6 +123,27 @@ export default class DropBox {
             })
             .catch(err => { console.error})
         })
+
+        this.btnNewFolderElement.addEventListener('click', ()=>{
+
+            let name = prompt('Digite o nome da nova pasta');
+
+            if(!name) return
+
+            let firebaseJson = { 
+                name,
+                mimetype: 'folder',
+                path: this.currentPath.join('/')
+            }
+
+            addToFirestoreDB(firebaseJson, FilesRef)
+              .then(console.log('Created Folder'))
+              .catch(error => { 
+                  this.UploadFinished();
+                  console.error(error);
+              });
+
+        })
     }
 
     uploadFiles(files){
@@ -163,8 +186,9 @@ export default class DropBox {
 
             let file = JSON.parse(liSelected.dataset.file);
             var formData = new FormData();
+            
             formData.append('path', file.filepath);
-            formData.append('id', file.id);
+            formData.append('id', liSelected.dataset.id);
 
             console.log(formData);
 
@@ -172,7 +196,6 @@ export default class DropBox {
                 promises.push(promise)
             }).catch( err => { console.error(err)});
 
-            return Promise.all(promises)
         })
 
         return Promise.all(promises)
@@ -196,6 +219,7 @@ export default class DropBox {
 
         this.progressBarTimeLeftElement.innerHTML = ConverterToAGoodLook(timeLeft)
     }
+
     initLiEvents(li){
 
         li.addEventListener('click', event=>{
