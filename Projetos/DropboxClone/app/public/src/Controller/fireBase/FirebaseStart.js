@@ -19,10 +19,11 @@ const DB = getFirestore(app);
 const analytics = getAnalytics(app);
 
 // files collections:
-export const FilesRef = collection(DB, 'files');
+export const _FilesRef = collection(DB, 'files');
 
 //Default DataBase
-const currentDB = FilesRef;
+export var currentDB = _FilesRef;
+export var currentReference = 'files'
 
 // ----functions------
 
@@ -86,4 +87,66 @@ export function DeleteAFileItemFromDB(reference, id, db = DB){
     })
 
     return deleteDocFromFirestore
+}
+
+export function DeleteCollectionFromDB(refName, db = DB){
+
+    let reference = collection(DB, refName);
+
+    let DeleteCollectionFromDB = new Promise((resolve, reject) => {
+
+        getDocs(reference)
+            .then( snapshot =>{
+    
+                snapshot.docs.forEach(item => {
+
+                    try { 
+                        DeleteAFileItemFromDB(reference, item.id, db) 
+                    }
+                    catch (err) { reject(err); }
+                
+                })
+
+                resolve('deleted collection')
+                
+            })
+            .catch( error => { reject(error )} );
+
+
+    })
+
+    return DeleteCollectionFromDB
+
+}
+
+// -----Side functions-------
+
+export function ChangeCurrentRef(refName){
+
+    if(! typeof reference === 'string') return
+
+    let ChangeCurrentRef = new Promise((resolve, reject) => {
+
+        try { resolve(currentDB = collection(DB, refName))}
+        catch (err) { reject(err)}
+    
+    })
+
+    return ChangeCurrentRef
+
+}
+
+export function createReference(reference){
+    
+    if(! typeof reference === 'string') return
+    
+    return collection(DB, reference)
+}
+
+export function setStringCurrentReference(newReference){
+
+    currentReference = newReference;
+
+    return currentReference;
+
 }
