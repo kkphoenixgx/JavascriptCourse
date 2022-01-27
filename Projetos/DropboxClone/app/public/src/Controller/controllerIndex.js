@@ -310,12 +310,14 @@ export default class DropBox {
 
     }
 
-    openFolder(folderReference, folderName = 'Home'){
+    openFolder(folderReference, folderName = 'Home', path = null){
 
         try{  this.loadFiles(folderReference) }
         catch{ e=>{  this.filesListElement.innerHTML = ``  }}
         
-        this.currentPath.push(folderName);
+        if(path) this.currentPath = path;
+        if(!path)this.currentPath.push(folderName);
+        
         this.renderNavigationBar()
     }
 
@@ -534,26 +536,32 @@ export default class DropBox {
     renderNavigationBar(){
 
         console.log(this.currentPath)
-        let nav =  document.querySelector('nav');
+        let nav =  document.querySelector('#browse-location');
         let path = [];
+
+        nav.innerHTML = '';
         
-        for(let i = 0; i < this.filesListElement.length; i++){
+
+        for(let i = 0; i < this.currentPath.length; i++){
             
             let name =  this.currentPath[i];
+            console.log(this.currentPath[i])
+            
             let span = document.createElement('span');
             path.push(name)
 
-            if((i + 1) === this.filesListElement.length){
+            if((i + 1) === this.currentPath.length){
 
                 span.innerHTML = name;
 
             }else{
-                
+
                 span.className = 'breadcrumb-segment_wrapper'
                 span.innerHTML = `
                     <span class="ue-effect-container uee-BreadCrumbSegment-link-0">
                         <a href="#" data-path="${path.join('/')}" class="breadcrumb-segment">${name}</a>
                     </span>
+
                     <svg width="24" height="24" viewBox="0 0 24 24" class="mc-icon-template-stateless" style="top: 4px; position: relative;">
                         <title>arrow-right</title>
                         <path d="M10.414 7.05l4.95 4.95-4.95 4.95L9 15.534 12.536 12 9 8.464z" fill="#637282" fill-rule="evenodd"></path>
@@ -564,7 +572,22 @@ export default class DropBox {
             nav.appendChild(span);
 
         }
-
         this.navigationElement.innerHTML = nav.innerHTML;
+
+        this.navigationElement.querySelectorAll('a').forEach(element => {
+
+            element.addEventListener('click', event=> {
+
+                event.preventDefault();
+                this.currentPath = element.dataset.path.split('/')
+
+                console.log(this.currentPath[this.currentPath.length -1])
+                let folderReference = createReference(this.currentPath[this.currentPath.length -1])
+                
+                this.openFolder(folderReference, this.currentPath[this.currentPath.length -1], element.dataset.path.split('/'))
+
+            })
+
+        })
     }
 }

@@ -19,11 +19,11 @@ const DB = getFirestore(app);
 const analytics = getAnalytics(app);
 
 // files collections:
-export const _FilesRef = collection(DB, 'files');
+export const _FilesRef = collection(DB, 'Home');
 
 //Default DataBase
 export var currentDB = _FilesRef;
-export var currentReference = 'files'
+export var currentReference = 'Home'
 
 // ----functions------
 
