@@ -180,6 +180,7 @@ export default class DropBox {
           promises.push(new Promise((resolve, reject) => {
             
             let formData = new FormData()
+            console.log(file)
             formData.append('input-file', file)
 
             CreateAjax('/upload', 'POST', formData,
@@ -280,6 +281,8 @@ export default class DropBox {
 
             li.classList.toggle('selected');
             this.filesListElement.dispatchEvent(this.onSelected);
+
+
         })
         
         li.addEventListener('dblclick', event=>{
@@ -301,7 +304,8 @@ export default class DropBox {
 
                 break;
                 default:
-                    // window.open('file?path=' + file.path);
+                    console.log(file)
+                    window.open(`file?path=` + file.filepath);
                 break;
 
             }
@@ -331,7 +335,6 @@ export default class DropBox {
                 this.filesListElement.appendChild(this.getFileIcon(file.data, file.id));
             })
         })
-
     }
 
     //-------side methods-------

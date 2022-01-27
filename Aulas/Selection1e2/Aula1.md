@@ -161,7 +161,7 @@ exemplo eval()
     console.log(result);
 ~~~
 
-## Funções e objetos
+## Funções
 
 mod 5 -- **09/04/20**
 
