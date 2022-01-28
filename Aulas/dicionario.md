@@ -389,7 +389,8 @@ promise
     > Retornará um número de 0 a 10
 
   * **Math.round()** = arredonda o número para o mais perto de um inteiro
-
+  * **Math.sqrt(x)** = faz a raiz quadrada de x;
+  * **Math.pow(x, y)** = faz a a potenciação de x e y sendo x a basa e y o expoente;
   * **Random Floor Round** =  Você pode definir um valor x randômico de -100 a 100 sem o 0:
 
     ~~~js
