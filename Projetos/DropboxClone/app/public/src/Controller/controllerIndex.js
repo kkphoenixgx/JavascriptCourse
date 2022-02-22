@@ -1,5 +1,7 @@
 import { ConverterToAGoodLook } from "../Utils/DateUtils.js"
 import { CreateAjax } from "../Utils/AjaxUtil.js";
+import { uploadFilesToStorage } from "./fireBase/FirebaseStorage.js"
+
 import { 
     currentDB,
     addToFirestoreDB, 
@@ -11,7 +13,7 @@ import {
     createReference, 
     setStringCurrentReference, 
     currentReference 
-} from "./firebase/FirebaseStart.js"
+} from "./fireBase/FirebaseStart.js"
 
 export default class DropBox {
     constructor(){
