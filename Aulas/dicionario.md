@@ -4,9 +4,9 @@
 
 * ### Declaração de variáveis
 
-  let = só funciona no escopo
-  const = variável não mutável
-  var = variável normal
+  let = só funciona no escopo  
+  const = variável não mutável  
+  var = variável normal  
 
   declaração:
   > declaração  nome = x
