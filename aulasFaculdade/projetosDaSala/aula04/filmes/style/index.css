@@ -1,0 +1,19 @@
+/*
+    0 ou 1 = 2
+    1 byte = 8 bits
+
+    2**8 = 256 -> 0..255 -> 00..FF
+*/
+
+tbody tr {
+    cursor: pointer;
+}
+
+tbody tr:nth-child(odd) {
+    background-color: #ffffee;
+}
+
+.selecionado {
+    background-color: blueviolet !important;
+    color: white;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Animes</title>
+    <script type="module" src="./src/index.js" ></script>
+    <link rel="stylesheet" href="./style/index.css" />
+</head>
+<body>
+    <h1>Animes</h1>
+    <button id="novo">Novo</button>
+    <button id="remover">Remover</button>
+    <button id="alterar">Alterar</button>
+    <form>
+        <label for="pesquisa">Pesquisa:</label>
+        <input type="search" name="" id="pesquisa">
+        <button aria-label="Pesquisar" title="Pesquisar"
+            id="pesquisar" >🔍</button>
+    </form>
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Ano</th>
+            </tr>
+        </thead>
+        <tbody></tbody>
+    </table>
+    <dialog>
+        <h2>Cadastro de Anime</h2>
+        <form>
+            <label for="nome">Nome:</label>
+            <input type="text" id="nome" />
+            <label for="ano">Ano:</label>
+            <input type="number" id="ano" />
+            <button id="salvar" >Salvar</button>
+            <button>Fechar</button>
+        </form>
+    </dialog>
+</body>
+</html>

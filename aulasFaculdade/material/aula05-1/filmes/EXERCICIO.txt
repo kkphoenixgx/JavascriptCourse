@@ -1,0 +1,22 @@
+EXERCÍCIOS
+----------
+1) Crie um campo de pesquisa e um botão "pesquisar",
+que permita um usuário informar um texto e apenas mostrar os
+filmes que contenham esse texto em seus nomes.
+Utilize na solução as funções de array vistas, procurando
+utilizar notação de seta.
+
+2) Faça paginação a cada 10 filmes, criando os botões "Anterior"
+   e "Próxima". Os botões devem, respectivamente, retroceder e avançar
+   na paginação. O botão "Anterior" deve ficar desabilitado se
+   estiver na primeira página. O botão "Próximo" deve ficar
+   desabilitado caso se esteja na última página.
+   👉 Faça com que a filtragem considere o índice do elemento,
+   na solução.
+
+3) (HOMEWORK) Crie um input "página", sem label, entre os botões
+   "Anterior" e "Próxima", em que seja possível digitar uma página
+   e mostrar apenas os filmes que estejam nela. Faça com que
+   o input apenas aceite um número de página existente, ignorando
+   valores incorretos. O valor do input deve ser atualizado ao
+   clicar no botões "Anterior" e "Próxima".

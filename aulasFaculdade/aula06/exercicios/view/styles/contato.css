@@ -1,0 +1,284 @@
+*{
+  box-sizing: border-box;
+  margin: 0px;
+  padding: 0px;
+}
+
+.contato-container{
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  height: 100vh;
+  justify-content: center;
+  align-items: center;
+}
+
+.menu{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  height: 100%;
+  width: 100%;
+  background-color: #272d4d;
+  color: #b83564;
+  font-size: large;
+  border: 3px solid #000;
+}
+
+.menu h1{
+  position: absolute;
+  width: 100%;
+  top: 5%;
+  text-align: center;
+  color: #ff6a5a;
+
+  font-size: x-large;
+  font-weight: bolder;
+}
+
+.menu-contato{
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.menu-contato-item{
+  font-weight: 700;
+  transition: 0.5s all;
+  cursor: pointer;
+}
+.menu-contato-item:hover{
+  color: #83b8aa;
+  font-size: x-large;
+}
+
+.content-container {
+  padding: 7%;
+  background-color: #ff6a5a;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* ?----------- Criar contato ----------- */
+
+
+.criar-contato{
+  background-color: #ffb350;
+  height: 70%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  border-radius: 3%;
+  box-shadow: 10px 10px 10px #0000009a;
+  position: relative;
+}
+.criar-contato h1{
+  width: 100%;
+  
+  text-align: center;
+  font-weight: bolder;
+  
+  position: absolute;
+  top: 5%;
+  transition: 0.5s all;
+}
+.criar-contato h1:hover{
+  font-size: 2.5rem;
+  color: #b83564;
+}
+
+.form-criar-contato{
+  width: 100%;
+  height: 60%;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  
+  gap: 3%;
+}
+.form-criar-contato label {
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+  font-size: large;
+  color: #e5e5e5;
+  font-weight: 600;
+  cursor: pointer;
+}
+.form-criar-contato input {
+  width: 45%;
+  height: 12%;
+  
+  border-radius: 2%;
+  border: 2px solid #b83564;
+  
+  color: #ffffff;
+  text-align: center;
+  font-size: medium;
+  
+  background-color: #272d4d;
+  transition: 0.2s ease-in;
+  
+}
+.form-criar-contato input::placeholder{
+  font-size: medium;
+}
+
+
+#nome{
+  text-transform: capitalize;
+}
+
+.form-criar-contato input:focus {
+  outline: 3px solid  #83b8aa;
+  width: 60%;
+  height: 18%;
+}
+
+
+/* ?----------- Listar Contatos ----------- */
+
+.listar-contato{
+  width: 80%;
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+.listar-contato h1{
+  position: absolute;
+  top: 0;
+}
+
+.list-table {
+  width: 100%;
+  min-height: 60vh;
+  background-color: #272d4d;
+  padding: 4%;
+  text-align: center;
+  color: #e5e5e5;
+  border-radius: 3%;
+}
+
+.list-table-body {
+  height: 100%;
+}
+
+.head-list-table tr{
+  color: #000;
+  background-color: #ff6a5a !important;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.listar-contato tr {
+  background-color: #b83564;
+  font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+}
+
+/* ----------- Helpers ----------- */
+
+.disable{
+  display: none;
+}
+
+
+/* ----------- Button animation ----------- */
+.blob-btn {
+  z-index: 1;
+  padding: 15px 40px;
+  text-align: center;
+  text-transform: uppercase;
+  color: #83b8aa;
+  font-size: 16px;
+  font-weight: bold;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  transition: color 0.5s;
+  cursor: pointer;
+  border-radius: 30px;
+
+  position: absolute;
+  bottom: 5%;
+}
+
+.blob-btn:before {
+  content: "";
+  z-index: 1;
+  position: absolute;
+  left: -1px;
+  top: 0px;
+  width: 98%;
+  height:95%;
+  border: 2px solid #b83564;
+  border-radius: 35px;
+  pointer-events: none;
+}
+
+.blob-btn:after {
+  content: "";
+  z-index: -2;
+  position: absolute;
+  left: 3px;
+  top: 3px;
+  width: 100%;
+  height: 100%;
+  transition: all 0.3s 0.2s;
+  border-radius: 30px;
+}
+
+.blob-btn:hover {
+  color: #b83564;
+}
+
+.blob-btn:hover:after {
+  transition: all 0.3s;
+  left: 0;
+  top: 0;
+}
+
+.blob-btn__inner {
+  z-index: -1;
+  overflow: hidden;
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 30px;
+  background: #272d4d; /* fundo interno */
+}
+
+.blob-btn__blobs {
+  position: relative;
+  display: block;
+  height: 100%;
+  filter: url("#goo");
+}
+
+.blob-btn__blob {
+  position: absolute;
+  top: 2px;
+  width: 25%;
+  height: 100%;
+  background: #83b8aa; /* cor das bolhas animadas */
+  border-radius: 100%;
+  transform: translate3d(0, 150%, 0) scale(1.7);
+  transition: transform 0.45s;
+}
+
+.blob-btn__blob:nth-child(1) { left: 0%;  transition-delay: 0s; }
+.blob-btn__blob:nth-child(2) { left: 30%; transition-delay: 0.08s; }
+.blob-btn__blob:nth-child(3) { left: 60%; transition-delay: 0.16s; }
+.blob-btn__blob:nth-child(4) { left: 90%; transition-delay: 0.24s; }
+
+.blob-btn:hover .blob-btn__blob {
+  transform: translateZ(0) scale(1.7);
+}

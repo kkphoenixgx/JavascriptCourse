@@ -1,0 +1,31 @@
+1) Crie uma classe Contato, em um arquivo contato.js,
+   contendo nome e telefone, com apenas atributos
+   privados e métodos getters e setters.
+   Crie também um método comoObjeto() que retorne
+   um objeto (JSON) contendo os valores dos atributos.
+
+2) Adicione à classe anterior um construtor com um objeto
+   desestruturado, contendo os mesmos nomes dos atributos
+   da classe.
+
+3) Adicione à classe um método clonar() que retorne uma
+   nova instância da classe, com valores da instância
+   existente.
+
+4) Em um arquivo contato-web.js, crie a classe ContatoWeb, filha de Contato.
+   A classe deve ter um novo atributo email. Ajuste todos os métodos
+   afetados pela mudança, para considerar o atributo adicionado.
+
+HOMEWORK:
+--------
+
+5) Crie um atributo estático na classe Contato que contabilize o número de
+   vezes em que a classe foi instanciada.
+
+6) Crie um arquivo contato.html com um formulário para cadastro de contato,
+   que permita salvar um contato, como um objeto, em um array no localStorage.
+   Use a chave "contatos" no localStorage.
+
+7) Crie um arquivo lista-contatos.html que, a partir de uma tabela vazia,
+   leia os contatos do localStorage e os exiba na tela, criando as linhas
+   apenas utilizando objetos do DOM, sem montar as linhas como string.

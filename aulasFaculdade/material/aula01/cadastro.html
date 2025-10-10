@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro</title>
+</head>
+<body>
+    <style>
+        input[type="text"],input[type="number"],select {
+            display: block;
+        }
+    </style>
+    <h1>Cadastro de Anime</h1>
+    <form action="api/animes" method="POST" >
+        <label for="nome" accesskey="N" >Nome:</label>
+        <input type="text" id="nome" name="nome"
+            minlength="2" maxlength="100" required />
+        <label for="categoria" accesskey="C" >Categoria:</label>
+        <select id="categoria" name="categoria" >
+            <option value="1" >Isekai</option>
+            <option value="2" >Shounen</option>
+            <option value="3" >Shoujo</option>
+            <option value="4" >Seinen</option>
+        </select>
+        <label for="ano">Ano:</label>
+        <input type="number" name="ano" id="ano"
+            min="1980" max="2025" />
+        <label for="lancamento">Lançamento:</label>
+        <input type="date" name="lancamento" id="lancamento" />
+
+        <input type="checkbox" name="disponivel" id="disponivel" checked />
+        <label for="disponivel">Disponível na CrunchyRoll</label>
+
+        <label for="assistido">Assistido?: </label>
+        <input type="radio" id="sim" name="assistido" />
+        <label for="sim">Sim</label>
+        <input type="radio" id="nao" name="assistido" />
+        <label for="nao">Não</label>
+
+        <label for="nota">Nota:</label>
+        <input type="range" name="nota" id="nota"
+            min="1" max="5" step="1"
+            onchange="valorNota.textContent = '⭐'.repeat( nota.value );"
+            />
+        <span id="valorNota"></span>
+
+        <button>Enviar</button>
+    </form>
+</body>
+</html>

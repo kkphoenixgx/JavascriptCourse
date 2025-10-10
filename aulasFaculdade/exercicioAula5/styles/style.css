@@ -1,0 +1,181 @@
+* {
+    box-sizing: border-box;
+    margin: 0px;
+    padding: 0px;
+}
+
+body {
+    --white: #f6f6f6;
+    --off-white: #e8e8e8;
+    --gray: #333333;
+    --vinho: #990100;
+    --red: #b90504;
+
+    height: 100vh;
+    background-color: var(--gray);
+    color: var(--white);
+    padding: 3%;
+}
+
+h1 {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 1%;
+    height: 8vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.text-block {
+    margin-bottom: 2%;
+    margin-left: 2%;
+}
+
+.buttons{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 2%;
+    margin-bottom: 5%;
+}
+
+input, select {
+    background-color: var(--gray);
+    color: var(--white);
+    border: 2px solid var(--off-white);
+    border-radius: 5px;
+    padding: 10px;
+    margin: 5px 0;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, select:focus {
+    outline: none;
+    border-color: var(--red);
+}
+.buttons button {
+    background-color: var(--red);
+    color: var(--white);
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    text-transform: uppercase;
+}
+
+.buttons button:hover {
+    background-color: var(--vinho);
+    transform: translateY(-2px);
+}
+.buttons button:active {
+    transform: translateY(0);
+}
+
+.buttons button:disabled {
+    background-color: #5e0100; /* Um tom mais escuro e sem vida do vinho */
+    color: #aaa;
+    cursor: not-allowed;
+    transform: none;
+    box-shadow: none;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: center;
+    margin-top: 2%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+tbody tr {
+    transition: background-color 0.2s ease;
+}
+
+tbody tr:hover {
+    background-color: #4e4e4e;
+}
+
+th, td {
+    padding: 12px 15px;
+    border-bottom: 1px solid #444;
+}
+
+/* -------------------- HELPERS -------------------- */
+
+.selected {
+    background-color: var(--vinho) !important;
+}
+
+/* -------------------- DIALOG -------------------- */
+
+dialog {
+    background-color: var(--gray);
+    color: var(--white);
+    border: 2px solid var(--off-white);
+    border-radius: 10px;
+    padding: 2rem;
+    width: 50%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+    margin: auto;
+}
+
+dialog::backdrop {
+    background-color: rgba(0, 0, 0, 0.6);
+    backdrop-filter: blur(3px);
+}
+
+dialog h2 {
+    text-align: center;
+    margin-bottom: 1.5rem;
+    color: var(--red);
+}
+
+dialog form {
+    display: flex;
+    flex-direction: column;
+}
+
+dialog form label {
+    margin-top: 10px;
+}
+
+/* -------------------- NAVIGATION -------------------- */
+
+nav {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1rem 0;
+    margin-bottom: 2rem;
+}
+
+nav button {
+    background-color: transparent;
+    color: var(--off-white);
+    border: 2px solid var(--off-white);
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    text-transform: uppercase;
+    transition: all 0.3s ease;
+}
+
+nav button:hover, nav button.active {
+    background-color: var(--red);
+    border-color: var(--red);
+    color: var(--white);
+}
+
+nav button:disabled {
+    background-color: transparent;
+    color: #666;
+    border-color: #666;
+    cursor: not-allowed;
+    transform: none;
+}

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+        
+        <link rel="stylesheet" href="./styles/contato.css">
+        
+        <script src="../controller/eventController.js" defer type="module"></script>
+         
+        <title>Contato Dashboard</title>
+    </head>
+    <body>
+      
+      <div class="contato-container">
+
+        <div class="menu" >
+          <h1>Contato Dashboard</h1>
+          <ul class="menu-contato" >
+            <li class="menu-contato-item" id="criar-contato" >Criar contato</li>
+            <li class="menu-contato-item" id="listar-contato" >Listar Contatos</li>
+          </ul>
+        
+        </div>
+
+        <div class="content-container">
+
+          <div class="criar-contato" id="criar-contato-container" >
+            
+            <h1>Criar contato</h1>
+
+            <form class="form-criar-contato" id="criar-contato-form">
+            
+              <label for="nome">Nome:</label> 
+              <input type="text" id="nome" placeholder="Digite seu nome">
+              <br>
+              
+              <label for="telefone">Telefone:</label> 
+              <input type="tel" id="telefone" placeholder="(xx)xxxxxxxxx" > 
+              <br>
+  
+              <button id="criar-contato-button" class="blob-btn">
+                Salvar
+                <span class="blob-btn__inner">
+                  <span class="blob-btn__blobs">
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                    <span class="blob-btn__blob"></span>
+                  </span>
+                </span>
+              </button>            
+            </form>
+  
+          </div>
+  
+          <div class="listar-contato disable" id="listar-contato-container" >
+            
+            <h1>Listar Contatos</h1>
+
+            <table class="list-table" >
+              
+              <thead class="head-list-table" >
+                <tr>
+                  <th>Nome</th>
+                  <th>Telefone</th>
+                </tr>
+              </thead>
+              
+              <tbody class="list-table-body" id="listTable" > </tbody>
+  
+            </table>
+          </div>
+
+        </div>
+
+
+
+      </div>
+
+
+      <svg xmlns="http://www.w3.org/2000/svg" version="1.1" style="display: none;">
+        <defs>
+          <filter id="goo">
+            <feGaussianBlur in="SourceGraphic" result="blur" stdDeviation="10"></feGaussianBlur>
+            <feColorMatrix in="blur" mode="matrix" values="
+                1 0 0 0 0  
+                0 1 0 0 0  
+                0 0 1 0 0  
+                0 0 0 21 -7" result="goo"></feColorMatrix>
+            <feBlend in2="goo" in="SourceGraphic" result="mix"></feBlend>
+          </filter>
+        </defs>
+      </svg>
+
+    </body>
+</html>

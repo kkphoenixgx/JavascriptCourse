@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filmes</title>
+    <link rel="stylesheet" href="./styles/style.css">
+    <script type="module" defer src="./src/index.js"></script>
+</head>
+
+<body>
+    <h1>FILMES</h1>
+
+    <p class="text-block">Simple plain javascript CRUD</p>
+
+    <div class="buttons">
+        <button id="novo">Novo</button>
+        <button id="alterar">Alterar</button>
+        <button id="remover">Remover</button>
+
+
+        <div class="search">
+            <input type="text" id="search">
+            <button id="buscar">Buscar</button>
+        </div>
+
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Nome</th>
+                <th>Gênero</th>
+                <th>Ano</th>
+            </tr>
+        </thead>
+
+        <tbody></tbody>
+    </table>
+
+    <nav class="navigation">
+        <button id="anterior" aria-label="Anterior" >⬅️ Anterior</button>
+        <button id="proximo" aria-label="Próxima" >Próximo ➡️</button>
+    </nav>
+
+    <dialog>
+        <h2>Filme</h2>
+        <form>
+            <label for="nome">Nome:</label> <input type="text" id="nome">
+
+            <label for="genero">Gênero:</label>
+            <select id="genero">
+                <option>Ação</option>
+                <option>Animação</option>
+                <option>Aventura</option>
+                <option>Drama</option>
+                <option>Ficção</option>
+                <option>Ficção Ciêntifica</option>
+                <option>Suspense</option>
+                <option>Terror</option>
+            </select>
+
+            <label for="ano">Ano:</label> <input type="number" id="ano">
+
+            <output></output>
+            
+            <br>
+            <button id="salvar">Salvar</button>
+            <button id="fechar">Fechar</button>
+        </form>
+    </dialog>
+
+</body>
+
+</html>
